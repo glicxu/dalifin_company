@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}{{ catalog.hero_label }} | {{ site_name }}{% endblock %}
+{% block content %}
+<section class="hero hero-product accent-{{ catalog.accent }}">
+  <div class="hero-copy">
+    <p class="eyebrow">{{ catalog.hero_label }}</p>
+    <h1>{{ catalog.headline }}</h1>
+    <p class="lede">{{ catalog.summary }}</p>
+    {% if latest %}
+    <div class="release-callout">
+      <p class="release-label">Latest stable release</p>
+      <h2>{{ latest.displayName }}</h2>
+      <p class="release-version">Version {{ latest.versionLabel }}</p>
+      <div class="release-meta">
+        <span>{{ latest.fileName }}</span>
+        <span>{{ latest.minOsVersion or "Android" }}</span>
+      </div>
+      <a class="button primary" href="{{ latest.artifactUrl }}">Download</a>
+    </div>
+    {% endif %}
+  </div>
+  <div class="hero-panel">
+    <p class="panel-label">Product key</p>
+    <p class="inline-code">{{ product_key }}</p>
+    <p class="panel-label">API-backed metadata</p>
+    <p class="panel-copy">Version, file, notes, publish time, and artifact URL are read from app_server.</p>
+  </div>
+</section>
+
+{% if error_message %}
+<section class="status-banner error">{{ error_message }}</section>
+{% endif %}
+
+<section class="details-layout">
+  <article class="content-card">
+    <h2>Why this page exists</h2>
+    <ul class="signal-list">
+      {% for feature in catalog.features %}
+      <li>{{ feature }}</li>
+      {% endfor %}
+    </ul>
+  </article>
+
+  <article class="content-card">
+    <h2>Latest release details</h2>
+    {% if latest %}
+    <dl class="release-details">
+      <div><dt>Version</dt><dd>{{ latest.versionLabel }}</dd></div>
+      <div><dt>Published</dt><dd>{{ latest.publishedAt or "Unknown" }}</dd></div>
+      <div><dt>Artifact</dt><dd>{{ latest.artifactType or "binary" }}</dd></div>
+      <div><dt>Package</dt><dd>{{ latest.packageName or "n/a" }}</dd></div>
+    </dl>
+    <p class="notes-block">{{ latest.releaseNotes or "No release notes provided." }}</p>
+    {% else %}
+    <p>No release metadata is available yet.</p>
+    {% endif %}
+  </article>
+</section>
+
+{% if releases %}
+<section class="content-card">
+  <h2>Available releases</h2>
+  <div class="release-list">
+    {% for release in releases %}
+    <article class="release-row">
+      <div>
+        <strong>{{ release.versionLabel }}</strong>
+        <span>{{ release.publishedAt or "Unknown date" }}</span>
+      </div>
+      <a href="{{ release.artifactUrl }}">Download</a>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if catalog.faq %}
+<section class="content-card">
+  <h2>FAQ</h2>
+  <div class="faq-list">
+    {% for item in catalog.faq %}
+    <article>
+      <h3>{{ item.question }}</h3>
+      <p>{{ item.answer }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}

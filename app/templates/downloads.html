@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Downloads | {{ site_name }}{% endblock %}
+{% block content %}
+<section class="hero hero-downloads">
+  <div class="hero-copy narrow">
+    <p class="eyebrow">Downloads</p>
+    <h1>Canonical releases, lighter public pages.</h1>
+    <p class="lede">
+      The company site lists products and routes users to per-app pages, while app_server remains the
+      source of version, artifact, and publication data.
+    </p>
+  </div>
+</section>
+
+{% if error_message %}
+<section class="status-banner error">{{ error_message }}</section>
+{% endif %}
+
+<section class="product-grid">
+  {% for product in products %}
+  <article class="product-card accent-{{ product.catalog.accent }}">
+    <p class="eyebrow">{{ product.catalog.hero_label }}</p>
+    <h2>{{ product.displayName }}</h2>
+    <p>{{ product.catalog.summary }}</p>
+    <div class="meta-row">
+      <span>Public downloads: {{ "Yes" if product.publicDownloads else "No" }}</span>
+      <span>Sign-in: {{ "Required" if product.requireSignIn else "Not required" }}</span>
+    </div>
+    <a class="button secondary" href="/downloads/{{ product.productKey }}">View download page</a>
+  </article>
+  {% endfor %}
+</section>
+{% endblock %}

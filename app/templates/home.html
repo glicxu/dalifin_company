@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% block title %}Dalifin Company{% endblock %}
+{% block content %}
+<section class="landing-hero">
+  <div class="container">
+    <p class="eyebrow">Agentic systems</p>
+    <h1>Create Agents. Orchestrate Intelligence.</h1>
+    <p class="hero-subtitle">
+      We make it easier to design, deploy, and coordinate autonomous AI agents that reason,
+      collaborate, and execute at scale.
+    </p>
+    <div class="cta-row">
+      <a class="button primary" href="/downloads">Browse Downloads</a>
+      <a class="button secondary" href="{{ portal_url }}">Access Portal</a>
+    </div>
+  </div>
+</section>
+
+<section class="landing-intro">
+  <div class="container intro-grid">
+    <div class="intro-text">
+      <p>Traditional software follows instructions.</p>
+      <p>Our systems evaluate context, choose strategies, and act.</p>
+    </div>
+    <div class="intro-text">
+      <p>We do not just build tools.</p>
+      <p>We build intelligent operators.</p>
+    </div>
+  </div>
+</section>
+
+<section id="approach" class="landing-section">
+  <div class="container">
+    <h2>What Is Agentic Development?</h2>
+    <p class="section-intro">Agentic development is the architecture of collaborative AI systems.</p>
+    <p class="section-copy">
+      Instead of one model answering prompts, we orchestrate specialized agents that plan, analyze,
+      critique, and execute within structured rules and tool boundaries.
+    </p>
+    <div class="agent-grid">
+      {% for item in approach_cards %}
+      <article class="agent-card">
+        <div class="agent-icon">{{ item.icon }}</div>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="principles">
+      <p>Each agent operates with explicit context and bounded tools.</p>
+      <p>Together, they form a coordinated decision engine.</p>
+      <div class="principle-tags">
+        <span>Modular</span>
+        <span>Explainable</span>
+        <span>Scalable</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trading" class="landing-section dark">
+  <div class="container">
+    <h2>Applied Intelligence: Systematic Trading</h2>
+    <p class="section-intro">
+      Financial markets are adaptive systems driven by liquidity, credit stress, volatility regimes,
+      and narrative shifts.
+    </p>
+    <div class="trading-framework">
+      <h3>Our framework integrates:</h3>
+      <ul class="framework-list">
+        <li>Sector structure scoring</li>
+        <li>Liquidity and credit stress monitoring</li>
+        <li>Volatility regime detection</li>
+        <li>Macro-factor alignment</li>
+        <li>Planner to evaluator to executor trade loops</li>
+      </ul>
+    </div>
+    <div class="trading-flow">
+      {% for step in trading_steps %}
+      <article class="flow-step">
+        <div class="flow-number">{{ loop.index }}</div>
+        <p>{{ step }}</p>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="result-box">
+      <h4>The result</h4>
+      <p>Structured probability management.</p>
+      <p>Adaptive strategy selection.</p>
+      <p>Transparent decision logic.</p>
+      <p class="result-footer">No hype. No black-box mysticism. Just engineered intelligence.</p>
+    </div>
+  </div>
+</section>
+
+<section class="landing-section">
+  <div class="container">
+    <h2>Beyond Markets</h2>
+    <p class="section-intro">Agentic systems apply anywhere decisions are complex.</p>
+    <div class="applications">
+      {% for item in applications %}
+      <div class="app-item">{{ item }}</div>
+      {% endfor %}
+    </div>
+    <p class="insight">Where complexity increases, static software fails. Collaborative agents thrive.</p>
+  </div>
+</section>
+
+<section class="landing-section dark">
+  <div class="container centered-copy">
+    <h2>The Future Is Agent Networks</h2>
+    <div class="evolution">
+      <p>Single-model AI is the beginning.</p>
+      <p>Agent ecosystems are the future.</p>
+    </div>
+    <p class="vision">
+      We are building infrastructure for autonomous reasoning systems that operate under governance,
+      structure, and measurable logic.
+    </p>
+    <div class="evolution-path">
+      <span>Scripts</span>
+      <span>Services</span>
+      <span>Intelligent Operators</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="landing-section cta-section">
+  <div class="container centered-copy">
+    <h2>Ready to Build?</h2>
+    <p>We work with teams building complex decision systems.</p>
+    <p class="contact-line">
+      Contact: <strong>{{ contact_name }}</strong> ·
+      <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>
+    </p>
+    <div class="cta-row center">
+      <a class="button primary" href="/contact">Contact Us</a>
+      <a class="button secondary" href="{{ portal_url }}">Access Portal</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

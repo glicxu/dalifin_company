@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}About | {{ site_name }}{% endblock %}
+{% block content %}
+<section class="content-hero">
+  <div class="container">
+    <p class="eyebrow">About</p>
+    <h1>We build agentic systems for complex decision environments.</h1>
+    <p class="lede">
+      Dalifin focuses on systems that do more than respond. They evaluate context, coordinate
+      specialized roles, and execute within defined rules.
+    </p>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container prose-grid">
+    <article class="content-card">
+      <h2>What we build</h2>
+      <p>
+        We design collaborative AI systems that combine planning, analysis, critique, and execution
+        into one coordinated operating model.
+      </p>
+      <p>
+        The goal is not generic automation. The goal is structured intelligence that can be explained,
+        constrained, and deployed in real workflows.
+      </p>
+    </article>
+    <article class="content-card">
+      <h2>How the site is split</h2>
+      <p>
+        This repo owns branding, public copy, and product presentation. Release metadata and download
+        decisions are read from app_server through a stable API contract.
+      </p>
+      <p>
+        That keeps the company site lightweight while the backend remains the source of truth for app
+        publication and artifact resolution.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="content-section dark">
+  <div class="container centered-copy">
+    <h2>Operator-first, not demo-first.</h2>
+    <p class="vision">
+      We are interested in systems that can operate under structure, not just produce isolated outputs.
+      That applies to markets, software delivery, research, and other domains where static software
+      breaks down under complexity.
+    </p>
+    <a class="button primary" href="{{ portal_url }}">Open Portal</a>
+  </div>
+</section>
+{% endblock %}

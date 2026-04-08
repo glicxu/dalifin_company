@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Contact | {{ site_name }}{% endblock %}
+{% block content %}
+<section class="content-hero">
+  <div class="container">
+    <p class="eyebrow">Contact</p>
+    <h1>Talk with Dalifin about agentic systems and product delivery.</h1>
+    <p class="lede">
+      If you are building complex decision systems, productized AI workflows, or operator tooling,
+      reach out directly.
+    </p>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container prose-grid">
+    <article class="content-card">
+      <h2>Primary contact</h2>
+      <p><strong>{{ contact_name }}</strong></p>
+      <p><a href="mailto:{{ contact_email }}">{{ contact_email }}</a></p>
+    </article>
+    <article class="content-card">
+      <h2>What to include</h2>
+      <p>Share the system you are building, the decision loop you want to improve, and the current bottleneck.</p>
+      <p>That is enough to make the first conversation concrete.</p>
+    </article>
+  </div>
+</section>
+
+<section class="content-section dark">
+  <div class="container centered-copy">
+    <h2>Existing users</h2>
+    <p class="vision">
+      If you are looking for the current user portal, use the portal entrypoint below.
+    </p>
+    <div class="cta-row center">
+      <a class="button primary" href="{{ portal_url }}">Access Portal</a>
+      <a class="button secondary" href="/downloads">Product Downloads</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
