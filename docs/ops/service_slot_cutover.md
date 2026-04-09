@@ -20,12 +20,12 @@ Apache does not need a new target if `dalifin_company` replaces the current webs
 The repo now supports:
 
 ```bash
-python ./dalifin_company.py -c /data/dali/prod/config/app_ops.ini
+python ./dalifin_company.py -c /data/dali/prod/config/app_dalifin_company.ini
 ```
 
 Expected config resolution:
 
-- bind host/port from `[dali_user]` unless a dedicated `[dalifin_company]` section is added later
+- bind host/port from `[dalifin_company]`
 - `app_server` API base from `[app_server]`
 
 With the current `app_common.ini`, that means:

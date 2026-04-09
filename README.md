@@ -34,7 +34,13 @@ Or with the runtime wrapper on Linux:
 Or from the current prod-style config model:
 
 ```bash
-python ./dalifin_company.py -c /data/dali/prod/config/app_ops.ini
+python ./dalifin_company.py -c /data/dali/prod/config/app_dalifin_company.ini
+```
+
+Or deploy the repo tree on a Linux host:
+
+```bash
+./check_and_deploy.sh
 ```
 
 Environment variables:
@@ -52,7 +58,7 @@ Environment variables:
 
 `dalifin_company.py -c <config.ini>` can derive:
 
-- bind host/port from `[dali_user]` or `[dalifin_company]`
+- bind host/port from `[dalifin_company]` and fall back to `[dali_user]` for compatibility
 - `DALIFIN_API_BASE_URL` from `[app_server]`
 
 ## Routes

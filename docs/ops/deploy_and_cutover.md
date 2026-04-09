@@ -44,7 +44,7 @@ The preferred production model is now:
 ```bash
 cd /home/dali-op/dali/dalifin_company
 source .venv/bin/activate
-python ./dalifin_company.py -c /data/dali/prod/config/app_ops.ini
+python ./dalifin_company.py -c /data/dali/prod/config/app_dalifin_company.ini
 ```
 
 2. Verify locally behind the existing port:
