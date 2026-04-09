@@ -1,0 +1,18 @@
+# Example Apache reverse-proxy targets for dalifin_company.
+# In production, final cutover can keep Apache unchanged if the service behind 127.0.0.1:5003 is replaced.
+
+<VirtualHost *:443>
+    ServerName staging.dalifin.com
+
+    ProxyPreserveHost On
+    ProxyPass / http://127.0.0.1:5103/
+    ProxyPassReverse / http://127.0.0.1:5103/
+</VirtualHost>
+
+<VirtualHost *:443>
+    ServerName dalifin.com
+
+    ProxyPreserveHost On
+    ProxyPass / http://127.0.0.1:5003/
+    ProxyPassReverse / http://127.0.0.1:5003/
+</VirtualHost>

@@ -8,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from app.catalog import get_catalog_entry
-from app.config import settings
+from app.config import get_settings
 from app.download_api import DownloadApiClient, DownloadApiError, DownloadApiNotFound
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -19,10 +19,28 @@ app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="stat
 
 
 def get_download_api_client() -> DownloadApiClient:
-    return DownloadApiClient()
+    settings = get_settings()
+    return DownloadApiClient(base_url=settings.api_base_url, timeout_seconds=settings.request_timeout_seconds)
+
+
+@app.get("/healthz")
+def healthz():
+    return {"status": "ok", "service": "dalifin_company"}
+
+
+@app.get("/version")
+def version():
+    settings = get_settings()
+    return {
+        "service": "dalifin_company",
+        "buildId": settings.build_id,
+        "siteName": settings.site_name,
+        "apiBaseUrl": settings.api_base_url,
+    }
 
 
 def _render(request: Request, template_name: str, **extra):
+    settings = get_settings()
     return templates.TemplateResponse(
         request,
         template_name,
@@ -36,6 +54,7 @@ def _render(request: Request, template_name: str, **extra):
 
 @app.get("/", response_class=HTMLResponse)
 def homepage(request: Request):
+    settings = get_settings()
     approach_cards = [
         {"icon": "P", "title": "Planners", "text": "Design strategy."},
         {"icon": "A", "title": "Analysts", "text": "Interpret signals."},
@@ -69,6 +88,7 @@ def homepage(request: Request):
 
 @app.get("/about", response_class=HTMLResponse)
 def about_page(request: Request):
+    settings = get_settings()
     return _render(
         request,
         "about.html",
@@ -78,6 +98,7 @@ def about_page(request: Request):
 
 @app.get("/contact", response_class=HTMLResponse)
 def contact_page(request: Request):
+    settings = get_settings()
     return _render(
         request,
         "contact.html",
@@ -89,6 +110,7 @@ def contact_page(request: Request):
 
 @app.get("/app")
 def app_portal_redirect():
+    settings = get_settings()
     return RedirectResponse(settings.portal_url, status_code=307)
 
 

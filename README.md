@@ -12,6 +12,9 @@ Current scope:
 - per-product download pages
 - presentation-only catalog content
 - release data read from `app_server`
+- stage/prod env templates
+- runtime wrapper and smoke-verification tooling
+- ini-driven startup compatible with the current `5003` website slot
 
 ## Run locally
 
@@ -20,6 +23,18 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload
+```
+
+Or with the runtime wrapper on Linux:
+
+```bash
+./scripts/run_site.sh start --env-file ./env/stage.env.example
+```
+
+Or from the current prod-style config model:
+
+```bash
+python ./dalifin_company.py -c /data/dali/prod/config/app_ops.ini
 ```
 
 Environment variables:
@@ -35,8 +50,15 @@ Environment variables:
 - `DALIFIN_CONTACT_NAME`
   - default: `Gang Li`
 
+`dalifin_company.py -c <config.ini>` can derive:
+
+- bind host/port from `[dali_user]` or `[dalifin_company]`
+- `DALIFIN_API_BASE_URL` from `[app_server]`
+
 ## Routes
 
+- `/healthz`
+- `/version`
 - `/`
 - `/about`
 - `/contact`
@@ -49,3 +71,10 @@ Environment variables:
 - The website does not compute artifact URLs.
 - Download metadata comes from `app_server` JSON APIs.
 - Product marketing copy in this repo is presentation-only.
+- The intended production cutover is to replace the website process behind the existing Apache proxy target `127.0.0.1:5003`.
+- Runtime/deploy helpers live in:
+  - `dalifin_company.py`
+  - `scripts/run_site.sh`
+  - `scripts/verify_deploy.py`
+  - `env/*.env.example`
+  - `deploy/apache/dalifin_company_vhost.conf.example`

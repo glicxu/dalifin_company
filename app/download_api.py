@@ -5,7 +5,7 @@ from typing import Any
 
 import httpx
 
-from app.config import settings
+from app.config import get_settings
 
 
 class DownloadApiError(Exception):
@@ -18,8 +18,15 @@ class DownloadApiNotFound(DownloadApiError):
 
 @dataclass
 class DownloadApiClient:
-    base_url: str = settings.api_base_url
-    timeout_seconds: float = settings.request_timeout_seconds
+    base_url: str = ""
+    timeout_seconds: float = 0.0
+
+    def __post_init__(self) -> None:
+        settings = get_settings()
+        if not self.base_url:
+            self.base_url = settings.api_base_url
+        if not self.timeout_seconds:
+            self.timeout_seconds = settings.request_timeout_seconds
 
     def _get_json(self, path: str, params: dict[str, Any] | None = None) -> dict[str, Any]:
         url = f"{self.base_url}{path}"

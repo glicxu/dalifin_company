@@ -11,6 +11,20 @@ from app.main import app
 client = TestClient(app)
 
 
+def test_healthz_returns_ok() -> None:
+    response = client.get("/healthz")
+    assert response.status_code == 200
+    assert response.json()["status"] == "ok"
+
+
+def test_version_returns_build_info_shape() -> None:
+    response = client.get("/version")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["service"] == "dalifin_company"
+    assert "buildId" in body
+
+
 def test_homepage_renders_core_message() -> None:
     response = client.get("/")
     assert response.status_code == 200

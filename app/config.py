@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+from functools import lru_cache
 from dataclasses import dataclass
 
 
@@ -12,6 +13,14 @@ class Settings:
     portal_url: str = os.getenv("DALIFIN_PORTAL_URL", "https://server.dalifin.com/account")
     contact_email: str = os.getenv("DALIFIN_CONTACT_EMAIL", "gli@dalifin.com")
     contact_name: str = os.getenv("DALIFIN_CONTACT_NAME", "Gang Li")
+    build_id: str = os.getenv("DALIFIN_BUILD_ID", "dev")
 
 
-settings = Settings()
+@lru_cache(maxsize=1)
+def get_settings() -> Settings:
+    return Settings()
+
+
+def refresh_settings() -> Settings:
+    get_settings.cache_clear()
+    return get_settings()
