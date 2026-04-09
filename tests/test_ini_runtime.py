@@ -48,7 +48,7 @@ def test_apply_runtime_from_ini_prefers_dalifin_company_section(tmp_path: Path) 
                 "host = 0.0.0.0",
                 "port = 5104",
                 "site_name = Dalifin",
-                "portal_url = https://server.dalifin.com/account",
+                "portal_url = https://server.dalifin.com/sso",
                 "contact_email = gli@dalifin.com",
                 "contact_name = Gang Li",
                 "",

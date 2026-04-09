@@ -14,7 +14,7 @@ class Settings:
     request_timeout_seconds: float = field(
         default_factory=lambda: float(os.getenv("DALIFIN_API_TIMEOUT_SECONDS", "5"))
     )
-    portal_url: str = field(default_factory=lambda: os.getenv("DALIFIN_PORTAL_URL", "https://server.dalifin.com/account"))
+    portal_url: str = field(default_factory=lambda: os.getenv("DALIFIN_PORTAL_URL", "https://server.dalifin.com/sso"))
     contact_email: str = field(default_factory=lambda: os.getenv("DALIFIN_CONTACT_EMAIL", "gli@dalifin.com"))
     contact_name: str = field(default_factory=lambda: os.getenv("DALIFIN_CONTACT_NAME", "Gang Li"))
     build_id: str = field(default_factory=lambda: os.getenv("DALIFIN_BUILD_ID", "dev"))
