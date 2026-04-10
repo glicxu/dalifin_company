@@ -4,6 +4,8 @@ import os
 from functools import lru_cache
 from dataclasses import dataclass, field
 
+LEGACY_PORTAL_URL = "https://server.dalifin.com/sso"
+
 
 @dataclass(frozen=True)
 class Settings:
@@ -14,7 +16,7 @@ class Settings:
     request_timeout_seconds: float = field(
         default_factory=lambda: float(os.getenv("DALIFIN_API_TIMEOUT_SECONDS", "5"))
     )
-    portal_url: str = field(default_factory=lambda: os.getenv("DALIFIN_PORTAL_URL", "https://server.dalifin.com/sso"))
+    portal_url: str = field(default_factory=lambda: os.getenv("DALIFIN_PORTAL_URL", "/sso"))
     contact_email: str = field(default_factory=lambda: os.getenv("DALIFIN_CONTACT_EMAIL", "gli@dalifin.com"))
     contact_name: str = field(default_factory=lambda: os.getenv("DALIFIN_CONTACT_NAME", "Gang Li"))
     build_id: str = field(default_factory=lambda: os.getenv("DALIFIN_BUILD_ID", "dev"))
@@ -28,3 +30,10 @@ def get_settings() -> Settings:
 def refresh_settings() -> Settings:
     get_settings.cache_clear()
     return get_settings()
+
+
+def resolved_portal_url(settings: Settings) -> str:
+    portal_url = (settings.portal_url or "").strip()
+    if not portal_url or portal_url == LEGACY_PORTAL_URL:
+        return "/sso"
+    return portal_url

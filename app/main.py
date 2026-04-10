@@ -8,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from app.catalog import get_catalog_entry
-from app.config import get_settings
+from app.config import get_settings, resolved_portal_url
 from app.download_api import DownloadApiClient, DownloadApiError, DownloadApiNotFound
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -54,6 +54,7 @@ def _render(request: Request, template_name: str, **extra):
 
 def _homepage_context() -> dict:
     settings = get_settings()
+    portal_url = resolved_portal_url(settings)
     approach_cards = [
         {"icon": "P", "title": "Planners", "text": "Design strategy."},
         {"icon": "A", "title": "Analysts", "text": "Interpret signals."},
@@ -77,7 +78,7 @@ def _homepage_context() -> dict:
         "approach_cards": approach_cards,
         "trading_steps": trading_steps,
         "applications": applications,
-        "portal_url": settings.portal_url,
+        "portal_url": portal_url,
         "contact_email": settings.contact_email,
         "contact_name": settings.contact_name,
     }
@@ -99,7 +100,7 @@ def about_page(request: Request):
     return _render(
         request,
         "about.html",
-        portal_url=settings.portal_url,
+        portal_url=resolved_portal_url(settings),
     )
 
 
@@ -109,7 +110,7 @@ def contact_page(request: Request):
     return _render(
         request,
         "contact.html",
-        portal_url=settings.portal_url,
+        portal_url=resolved_portal_url(settings),
         contact_email=settings.contact_email,
         contact_name=settings.contact_name,
     )
@@ -118,7 +119,7 @@ def contact_page(request: Request):
 @app.get("/app")
 def app_portal_redirect():
     settings = get_settings()
-    return RedirectResponse(settings.portal_url, status_code=307)
+    return RedirectResponse(resolved_portal_url(settings), status_code=307)
 
 
 @app.get("/downloads", response_class=HTMLResponse)

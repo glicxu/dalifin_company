@@ -50,7 +50,7 @@ Environment variables:
 - `DALIFIN_SITE_NAME`
   - default: `Dalifin`
 - `DALIFIN_PORTAL_URL`
-  - default: `https://server.dalifin.com/sso`
+  - default: `/sso`
 - `DALIFIN_CONTACT_EMAIL`
   - default: `gli@dalifin.com`
 - `DALIFIN_CONTACT_NAME`

@@ -53,7 +53,7 @@ def test_contact_page_renders_contact_details() -> None:
 def test_app_route_redirects_to_portal() -> None:
     response = client.get("/app", follow_redirects=False)
     assert response.status_code == 307
-    assert response.headers["location"] == "https://server.dalifin.com/sso"
+    assert response.headers["location"] == "/sso"
 
 
 def test_downloads_page_lists_products_from_api() -> None:
