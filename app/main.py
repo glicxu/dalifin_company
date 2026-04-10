@@ -52,8 +52,7 @@ def _render(request: Request, template_name: str, **extra):
     )
 
 
-@app.get("/", response_class=HTMLResponse)
-def homepage(request: Request):
+def _homepage_context() -> dict:
     settings = get_settings()
     approach_cards = [
         {"icon": "P", "title": "Planners", "text": "Design strategy."},
@@ -74,15 +73,23 @@ def homepage(request: Request):
         "Knowledge graph generation",
         "Enterprise automation",
     ]
+    return {
+        "approach_cards": approach_cards,
+        "trading_steps": trading_steps,
+        "applications": applications,
+        "portal_url": settings.portal_url,
+        "contact_email": settings.contact_email,
+        "contact_name": settings.contact_name,
+    }
+
+
+@app.get("/", response_class=HTMLResponse)
+@app.get("/sso", response_class=HTMLResponse)
+def homepage(request: Request):
     return _render(
         request,
         "home.html",
-        approach_cards=approach_cards,
-        trading_steps=trading_steps,
-        applications=applications,
-        portal_url=settings.portal_url,
-        contact_email=settings.contact_email,
-        contact_name=settings.contact_name,
+        **_homepage_context(),
     )
 
 

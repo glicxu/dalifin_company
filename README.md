@@ -66,6 +66,7 @@ Environment variables:
 - `/healthz`
 - `/version`
 - `/`
+- `/sso`
 - `/about`
 - `/contact`
 - `/app`

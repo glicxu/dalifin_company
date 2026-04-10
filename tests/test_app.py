@@ -32,6 +32,12 @@ def test_homepage_renders_core_message() -> None:
     assert "What Is Agentic Development?" in response.text
 
 
+def test_sso_route_renders_homepage() -> None:
+    response = client.get("/sso")
+    assert response.status_code == 200
+    assert "Create Agents. Orchestrate Intelligence." in response.text
+
+
 def test_about_page_renders_public_company_copy() -> None:
     response = client.get("/about")
     assert response.status_code == 200
