@@ -85,13 +85,18 @@ def _homepage_context() -> dict:
 
 
 @app.get("/", response_class=HTMLResponse)
-@app.get("/sso", response_class=HTMLResponse)
 def homepage(request: Request):
     return _render(
         request,
         "home.html",
         **_homepage_context(),
     )
+
+
+@app.get("/sso")
+def legacy_sso_redirect():
+    settings = get_settings()
+    return RedirectResponse(resolved_portal_url(settings), status_code=307)
 
 
 @app.get("/about", response_class=HTMLResponse)
