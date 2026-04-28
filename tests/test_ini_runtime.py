@@ -17,6 +17,10 @@ def test_apply_runtime_from_ini_uses_dali_user_slot_and_app_server_section(tmp_p
                 "[app_server]",
                 "host = 127.0.0.1",
                 "port = 5005",
+                "",
+                "[dali_payment_service]",
+                "server = 0.0.0.0",
+                "port = 5006",
             ]
         ),
         encoding="utf-8",
@@ -37,6 +41,7 @@ def test_apply_runtime_from_ini_uses_dali_user_slot_and_app_server_section(tmp_p
     assert env["DALIFIN_HOST"] == "0.0.0.0"
     assert env["DALIFIN_PORT"] == "5003"
     assert env["DALIFIN_API_BASE_URL"] == "http://127.0.0.1:5005/account/api"
+    assert env["DALIFIN_PAYMENT_API_BASE_URL"] == "http://127.0.0.1:5006"
 
 
 def test_apply_runtime_from_ini_prefers_dalifin_company_section(tmp_path: Path) -> None:
@@ -49,6 +54,7 @@ def test_apply_runtime_from_ini_prefers_dalifin_company_section(tmp_path: Path) 
                 "port = 5104",
                 "site_name = Dalifin",
                 "portal_url = https://server.dalifin.com/sso",
+                "payment_api_base_url = http://127.0.0.1:5106",
                 "contact_email = gli@dalifin.com",
                 "contact_name = Gang Li",
                 "",
@@ -75,4 +81,5 @@ def test_apply_runtime_from_ini_prefers_dalifin_company_section(tmp_path: Path) 
     assert env["DALIFIN_HOST"] == "0.0.0.0"
     assert env["DALIFIN_PORT"] == "5104"
     assert env["DALIFIN_API_BASE_URL"] == "http://127.0.0.1:5005/account/api"
+    assert env["DALIFIN_PAYMENT_API_BASE_URL"] == "http://127.0.0.1:5106"
     assert env["DALIFIN_SITE_NAME"] == "Dalifin"

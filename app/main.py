@@ -2,8 +2,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import httpx
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -84,6 +85,35 @@ def _homepage_context() -> dict:
     }
 
 
+def _payment_api_url(path: str) -> str:
+    settings = get_settings()
+    return f"{settings.payment_api_base_url}{path}"
+
+
+async def _forward_payment_request(path: str, payload: dict | None = None) -> JSONResponse:
+    settings = get_settings()
+    try:
+        async with httpx.AsyncClient(timeout=settings.request_timeout_seconds) as client:
+            if payload is None:
+                response = await client.get(_payment_api_url(path))
+            else:
+                response = await client.post(_payment_api_url(path), json=payload)
+    except httpx.HTTPError:
+        return JSONResponse(
+            {"status": "error", "error": "Payment service is temporarily unavailable."},
+            status_code=502,
+        )
+
+    try:
+        body = response.json()
+    except ValueError:
+        return JSONResponse(
+            {"status": "error", "error": "Payment service returned an invalid response."},
+            status_code=502,
+        )
+    return JSONResponse(body, status_code=response.status_code)
+
+
 @app.get("/", response_class=HTMLResponse)
 def homepage(request: Request):
     return _render(
@@ -119,6 +149,56 @@ def contact_page(request: Request):
         contact_email=settings.contact_email,
         contact_name=settings.contact_name,
     )
+
+
+@app.get("/support", response_class=HTMLResponse)
+def support_page(request: Request):
+    settings = get_settings()
+    return _render(
+        request,
+        "support.html",
+        contact_email=settings.contact_email,
+    )
+
+
+@app.get("/support/api/config")
+async def support_payment_config():
+    return await _forward_payment_request("/config")
+
+
+@app.post("/support/api/create-payment-intent")
+async def support_create_payment_intent(request: Request):
+    payload = await request.json()
+    amount = payload.get("amount")
+    try:
+        amount = int(amount)
+    except (TypeError, ValueError):
+        return JSONResponse({"status": "error", "error": "Enter a valid amount."}, status_code=400)
+    if amount < 100:
+        return JSONResponse({"status": "error", "error": "Minimum payment is $1."}, status_code=400)
+
+    metadata = payload.get("metadata") if isinstance(payload.get("metadata"), dict) else {}
+    metadata = {
+        **metadata,
+        "site": "dalifin.com",
+        "source": "dalifin_company_support",
+    }
+    forwarded_payload = {
+        "amount": amount,
+        "currency": str(payload.get("currency") or "usd").lower(),
+        "metadata": metadata,
+    }
+    return await _forward_payment_request("/create-payment-intent", forwarded_payload)
+
+
+@app.post("/support/api/create-setup-intent")
+async def support_create_setup_intent(request: Request):
+    payload = await request.json()
+    forwarded_payload = {}
+    customer_id = payload.get("customer_id")
+    if customer_id:
+        forwarded_payload["customer_id"] = str(customer_id)
+    return await _forward_payment_request("/create-setup-intent", forwarded_payload)
 
 
 @app.get("/app")

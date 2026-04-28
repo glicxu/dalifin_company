@@ -8,6 +8,7 @@ Current scope:
 - about page
 - contact page
 - `/app` portal redirect
+- `/support` credit-card support page backed by `dali_payment_service`
 - downloads index
 - per-product download pages
 - presentation-only catalog content
@@ -51,6 +52,8 @@ Environment variables:
   - default: `Dalifin`
 - `DALIFIN_PORTAL_URL`
   - default: `https://server.dalifin.com/account`
+- `DALIFIN_PAYMENT_API_BASE_URL`
+  - default: `http://127.0.0.1:5006`
 - `DALIFIN_CONTACT_EMAIL`
   - default: `gli@dalifin.com`
 - `DALIFIN_CONTACT_NAME`
@@ -60,6 +63,8 @@ Environment variables:
 
 - bind host/port from `[dalifin_company]` and fall back to `[dali_user]` for compatibility
 - `DALIFIN_API_BASE_URL` from `[app_server]`
+- `DALIFIN_PAYMENT_API_BASE_URL` from `[dali_payment_service]` or
+  `[dalifin_company] payment_api_base_url`
 
 ## Routes
 
@@ -69,6 +74,10 @@ Environment variables:
 - `/sso`
 - `/about`
 - `/contact`
+- `/support`
+- `/support/api/config`
+- `/support/api/create-payment-intent`
+- `/support/api/create-setup-intent`
 - `/app`
 - `/downloads`
 - `/downloads/{product_key}`

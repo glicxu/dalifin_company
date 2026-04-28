@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Support | {{ site_name }}{% endblock %}
+{% block content %}
+<section class="content-hero support-hero">
+  <div class="container">
+    <p class="eyebrow">Support</p>
+    <h1>Support Dalifin by credit card.</h1>
+    <p class="lede">
+      One-time card payments are processed by Stripe through the same Dali payment service used by
+      the book site. Card details are handled by Stripe Elements.
+    </p>
+  </div>
+</section>
+
+<section class="content-section support-section">
+  <div class="container support-layout">
+    <article class="content-card support-copy">
+      <h2>Contribution</h2>
+      <p>
+        Choose an amount, enter card details in the secure Stripe form, and submit when ready.
+      </p>
+      <p>
+        For billing questions, contact <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>.
+      </p>
+    </article>
+
+    <article class="content-card payment-card">
+      <form id="support-payment-form" class="payment-form">
+        <section id="amount-group">
+          <p class="field-label">Choose an amount</p>
+          <div class="quick-amounts" role="group" aria-label="Quick amounts">
+            <button type="button" class="quick-amount" data-amount="500" aria-pressed="false">$5</button>
+            <button type="button" class="quick-amount is-selected" data-amount="2500" aria-pressed="true">$25</button>
+            <button type="button" class="quick-amount" data-amount="10000" aria-pressed="false">$100</button>
+            <button type="button" class="quick-amount" data-amount="custom" aria-pressed="false">Custom</button>
+          </div>
+          <label id="custom-amount-label" for="amount-input">
+            Custom amount (USD)
+            <div class="input-with-prefix">
+              <span aria-hidden="true">$</span>
+              <input
+                id="amount-input"
+                name="amount"
+                type="number"
+                min="1"
+                step="0.5"
+                inputmode="decimal"
+                value="25"
+                required
+              >
+            </div>
+          </label>
+        </section>
+
+        <div id="payment-element" class="payment-element"></div>
+
+        <button id="submit-payment" class="button primary payment-submit" type="submit" disabled>
+          Support Dalifin
+        </button>
+        <button id="reset-payment" class="button secondary payment-reset" type="button" hidden>
+          Start another payment
+        </button>
+        <div id="payment-spinner" class="payment-spinner" hidden aria-hidden="true"></div>
+        <div id="payment-message" class="payment-message" role="status" aria-live="polite"></div>
+      </form>
+    </article>
+  </div>
+</section>
+
+<section id="payment-status-overlay" data-hidden="true" role="presentation" aria-hidden="true">
+  <div class="payment-status-modal" role="dialog" aria-modal="true">
+    <header>
+      <h2 id="payment-status-title"></h2>
+      <button id="payment-modal-close" type="button" aria-label="Close status">x</button>
+    </header>
+    <p id="payment-status-message"></p>
+    <p id="payment-status-reference" data-hidden="true"></p>
+    <button id="payment-modal-dismiss" class="button primary" type="button">Close</button>
+  </div>
+</section>
+
+<script src="https://js.stripe.com/v3/" defer></script>
+<script src="{{ url_for('static', path='/support_checkout.js') }}" type="module" defer></script>
+{% endblock %}

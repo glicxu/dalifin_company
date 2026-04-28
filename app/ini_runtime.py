@@ -58,6 +58,17 @@ def apply_runtime_from_ini(config_path: str) -> dict[str, str]:
         "DALIFIN_API_BASE_URL": f"http://{api_host}:{api_port}/account/api",
     }
 
+    if parser.has_section("dali_payment_service"):
+        payment_host = parser.get(
+            "dali_payment_service",
+            "host",
+            fallback=parser.get("dali_payment_service", "server", fallback="127.0.0.1"),
+        )
+        if payment_host == "0.0.0.0":
+            payment_host = "127.0.0.1"
+        payment_port = parser.get("dali_payment_service", "port", fallback="5006")
+        env_updates["DALIFIN_PAYMENT_API_BASE_URL"] = f"http://{payment_host}:{payment_port}"
+
     if parser.has_section("dalifin_company"):
         optional_map = {
             "site_name": "DALIFIN_SITE_NAME",
@@ -65,6 +76,7 @@ def apply_runtime_from_ini(config_path: str) -> dict[str, str]:
             "contact_email": "DALIFIN_CONTACT_EMAIL",
             "contact_name": "DALIFIN_CONTACT_NAME",
             "build_id": "DALIFIN_BUILD_ID",
+            "payment_api_base_url": "DALIFIN_PAYMENT_API_BASE_URL",
         }
         for ini_key, env_key in optional_map.items():
             if parser.has_option("dalifin_company", ini_key):

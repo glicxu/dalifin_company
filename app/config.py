@@ -22,6 +22,9 @@ class Settings:
         default_factory=lambda: float(os.getenv("DALIFIN_API_TIMEOUT_SECONDS", "5"))
     )
     portal_url: str = field(default_factory=lambda: os.getenv("DALIFIN_PORTAL_URL", DEFAULT_PORTAL_URL))
+    payment_api_base_url: str = field(
+        default_factory=lambda: os.getenv("DALIFIN_PAYMENT_API_BASE_URL", "http://127.0.0.1:5006").rstrip("/")
+    )
     contact_email: str = field(default_factory=lambda: os.getenv("DALIFIN_CONTACT_EMAIL", "gli@dalifin.com"))
     contact_name: str = field(default_factory=lambda: os.getenv("DALIFIN_CONTACT_NAME", "Gang Li"))
     build_id: str = field(default_factory=lambda: os.getenv("DALIFIN_BUILD_ID", "dev"))

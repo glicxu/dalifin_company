@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-from unittest.mock import patch
+from unittest.mock import AsyncMock, patch
 
 from fastapi.testclient import TestClient
+from fastapi.responses import JSONResponse
 
 from app.download_api import DownloadApiError
 from app.main import app
@@ -48,6 +49,47 @@ def test_contact_page_renders_contact_details() -> None:
     response = client.get("/contact")
     assert response.status_code == 200
     assert "gli@dalifin.com" in response.text
+
+
+def test_support_page_renders_payment_form() -> None:
+    response = client.get("/support")
+    assert response.status_code == 200
+    assert "Support Dalifin by credit card." in response.text
+    assert "id=\"support-payment-form\"" in response.text
+    assert "support_checkout.js" in response.text
+
+
+def test_support_payment_config_proxies_to_payment_service() -> None:
+    forwarded = AsyncMock(return_value=JSONResponse({"publishableKey": "pk_test_123"}))
+    with patch("app.main._forward_payment_request", forwarded):
+        response = client.get("/support/api/config")
+    assert response.status_code == 200
+    assert response.json()["publishableKey"] == "pk_test_123"
+    forwarded.assert_awaited_once_with("/config")
+
+
+def test_support_create_payment_intent_validates_amount() -> None:
+    response = client.post("/support/api/create-payment-intent", json={"amount": 99})
+    assert response.status_code == 400
+    assert response.json()["error"] == "Minimum payment is $1."
+
+
+def test_support_create_payment_intent_adds_site_metadata() -> None:
+    forwarded = AsyncMock(return_value=JSONResponse({"clientSecret": "pi_secret"}))
+    with patch("app.main._forward_payment_request", forwarded):
+        response = client.post(
+            "/support/api/create-payment-intent",
+            json={"amount": 2500, "currency": "USD", "metadata": {"campaign": "home"}},
+        )
+    assert response.status_code == 200
+    forwarded.assert_awaited_once()
+    path, payload = forwarded.await_args.args
+    assert path == "/create-payment-intent"
+    assert payload["amount"] == 2500
+    assert payload["currency"] == "usd"
+    assert payload["metadata"]["campaign"] == "home"
+    assert payload["metadata"]["site"] == "dalifin.com"
+    assert payload["metadata"]["source"] == "dalifin_company_support"
 
 
 def test_app_route_redirects_to_portal() -> None:
