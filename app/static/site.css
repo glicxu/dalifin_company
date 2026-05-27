@@ -389,9 +389,31 @@ a {
 
 .support-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.78fr) minmax(320px, 1fr);
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 0.78fr) minmax(320px, 1fr);
   gap: 32px;
   align-items: start;
+}
+
+.support-list,
+.policy-list {
+  margin: 18px 0;
+  padding-left: 20px;
+  color: var(--text-secondary);
+}
+
+.support-list li,
+.policy-list li {
+  margin: 10px 0;
+}
+
+.policy-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.policy-card h2 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
 }
 
 .payment-form {
@@ -575,6 +597,7 @@ a {
   .intro-grid,
   .prose-grid,
   .details-layout,
+  .policy-layout,
   .support-layout {
     grid-template-columns: 1fr 1fr;
   }
@@ -601,6 +624,7 @@ a {
   .intro-grid,
   .prose-grid,
   .details-layout,
+  .policy-layout,
   .support-layout,
   .release-details {
     grid-template-columns: 1fr;

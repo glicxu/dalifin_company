@@ -161,6 +161,16 @@ def support_page(request: Request):
     )
 
 
+@app.get("/privacy", response_class=HTMLResponse)
+def privacy_page(request: Request):
+    settings = get_settings()
+    return _render(
+        request,
+        "privacy.html",
+        contact_email=settings.contact_email,
+    )
+
+
 @app.get("/support/api/config")
 async def support_payment_config():
     return await _forward_payment_request("/config")

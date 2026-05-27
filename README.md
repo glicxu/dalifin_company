@@ -7,6 +7,7 @@ Current scope:
 - homepage
 - about page
 - contact page
+- privacy policy page for App Store metadata
 - `/app` portal redirect
 - `/support` credit-card support page backed by `dali_payment_service`
 - downloads index
@@ -74,6 +75,7 @@ Environment variables:
 - `/sso`
 - `/about`
 - `/contact`
+- `/privacy`
 - `/support`
 - `/support/api/config`
 - `/support/api/create-payment-intent`

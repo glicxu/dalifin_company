@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Privacy Policy | {{ site_name }}{% endblock %}
+{% block content %}
+<section class="content-hero">
+  <div class="container">
+    <p class="eyebrow">Privacy</p>
+    <h1>Dalifin Privacy Policy.</h1>
+    <p class="lede">
+      This policy explains how Dalifin LLC handles information for Dalifin websites,
+      Dali Interpreter apps, Dali Bible, downloads, payments, and related services.
+    </p>
+    <p class="quiet-note">Effective date: May 27, 2026</p>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container policy-layout">
+    <article class="content-card policy-card">
+      <h2>Who we are</h2>
+      <p>
+        Dalifin LLC provides software products and related services, including Dali Interpreter,
+        Dali Bible, account portals, download services, and public company websites.
+      </p>
+      <p>
+        For privacy questions or data requests, contact
+        <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>.
+      </p>
+    </article>
+
+    <article class="content-card policy-card">
+      <h2>Information we process</h2>
+      <ul class="policy-list">
+        <li>Account information, such as email address and sign-in state.</li>
+        <li>Session information, such as join codes, listener names, selected languages, and session status.</li>
+        <li>Audio and transcript content needed to provide live interpretation, transcription, translation, and playback.</li>
+        <li>App, device, network, diagnostic, and crash information used to maintain reliability and support users.</li>
+        <li>Download, entitlement, and product access information.</li>
+        <li>Payment metadata for support payments. Card details are handled by Stripe and are not stored by Dalifin servers.</li>
+      </ul>
+    </article>
+
+    <article class="content-card policy-card">
+      <h2>How we use information</h2>
+      <ul class="policy-list">
+        <li>Provide app functionality, including live listener sessions, transcripts, translations, and audio playback.</li>
+        <li>Authenticate users, protect accounts, and manage access to hosted sessions and downloads.</li>
+        <li>Operate, monitor, debug, and improve Dalifin apps and services.</li>
+        <li>Respond to support, privacy, billing, and operational requests.</li>
+        <li>Process payments and prevent fraud or misuse.</li>
+        <li>Comply with legal, security, and App Store obligations.</li>
+      </ul>
+    </article>
+
+    <article class="content-card policy-card">
+      <h2>Service providers</h2>
+      <p>
+        Dalifin may use hosting, payment, analytics, communications, and AI/service providers to
+        deliver requested functionality. For Dali Interpreter, live audio and transcript content may
+        be processed by Dalifin systems and third-party AI/service providers to provide transcription,
+        translation, and spoken interpretation.
+      </p>
+      <p>
+        We use these providers to operate the service, not to sell personal information.
+      </p>
+    </article>
+
+    <article class="content-card policy-card">
+      <h2>Retention and deletion</h2>
+      <p>
+        We keep information for as long as needed to provide the service, support users, maintain
+        security, satisfy operational records, and meet legal obligations. Some logs and diagnostic
+        records may be kept for a limited period to investigate reliability or abuse.
+      </p>
+      <p>
+        To request access, correction, or deletion, contact
+        <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>. Some records may need to be
+        retained where required for security, payment, legal, or operational reasons.
+      </p>
+    </article>
+
+    <article class="content-card policy-card">
+      <h2>Children</h2>
+      <p>
+        Dalifin apps and services are not intended for children under 13. If you believe a child has
+        provided personal information to Dalifin, contact us so we can review and take appropriate action.
+      </p>
+    </article>
+
+    <article class="content-card policy-card">
+      <h2>Your choices</h2>
+      <ul class="policy-list">
+        <li>You can choose not to join live sessions or provide optional listener names.</li>
+        <li>You can contact support for account, privacy, or deletion requests.</li>
+        <li>You can manage app permissions such as microphone, audio, notifications, or background behavior in iOS settings.</li>
+        <li>You can stop using a session or app at any time.</li>
+      </ul>
+    </article>
+
+    <article class="content-card policy-card">
+      <h2>Changes</h2>
+      <p>
+        We may update this policy as Dalifin products change. The effective date above shows when this
+        version applies. Material updates will be reflected on this page.
+      </p>
+    </article>
+  </div>
+</section>
+{% endblock %}

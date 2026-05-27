@@ -31,6 +31,8 @@ def test_homepage_renders_core_message() -> None:
     assert response.status_code == 200
     assert "Create Agents. Orchestrate Intelligence." in response.text
     assert "What Is Agentic Development?" in response.text
+    assert 'href="/support"' in response.text
+    assert 'href="/privacy"' in response.text
 
 
 def test_sso_route_redirects_to_portal() -> None:
@@ -54,9 +56,22 @@ def test_contact_page_renders_contact_details() -> None:
 def test_support_page_renders_payment_form() -> None:
     response = client.get("/support")
     assert response.status_code == 200
-    assert "Support Dalifin by credit card." in response.text
+    assert "Get help with Dalifin apps and services." in response.text
+    assert "gli@dalifin.com" in response.text
+    assert "Dali Interpreter Listener, Host, and Personal" in response.text
+    assert "/privacy" in response.text
     assert "id=\"support-payment-form\"" in response.text
     assert "support_checkout.js" in response.text
+
+
+def test_privacy_page_renders_app_store_policy_content() -> None:
+    response = client.get("/privacy")
+    assert response.status_code == 200
+    assert "Dalifin Privacy Policy." in response.text
+    assert "Dalifin LLC" in response.text
+    assert "gli@dalifin.com" in response.text
+    assert "Audio and transcript content" in response.text
+    assert "Stripe" in response.text
 
 
 def test_support_payment_config_proxies_to_payment_service() -> None:
