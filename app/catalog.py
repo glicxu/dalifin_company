@@ -63,6 +63,27 @@ PRODUCT_CATALOG: dict[str, dict[str, Any]] = {
             }
         ],
     },
+    "interprete": {
+        "headline": "Join Dali Interpreter sessions from your phone.",
+        "summary": "A listener-focused Android build for live interpretation sessions, with app audio that is more reliable than a browser tab.",
+        "accent": "harbor",
+        "hero_label": "Dali Interpreter Listener",
+        "features": [
+            "Listen to live translated audio with fewer browser playback interruptions.",
+            "Join public sessions quickly and sign in when a private session requires it.",
+            "Use replay and rejoin controls designed for longer interpretation sessions.",
+        ],
+        "faq": [
+            {
+                "question": "Do I need AI settings in the listener app?",
+                "answer": "No. Listener builds only need the server address and account sign-in when a session requires private access.",
+            },
+            {
+                "question": "Should iPhone users use this APK?",
+                "answer": "No. iPhone users should use the Dali Interpreter Listener TestFlight beta link from the web listener page.",
+            },
+        ],
+    },
 }
 
 
