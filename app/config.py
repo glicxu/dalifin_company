@@ -28,6 +28,12 @@ class Settings:
     contact_email: str = field(default_factory=lambda: os.getenv("DALIFIN_CONTACT_EMAIL", "gli@dalifin.com"))
     contact_name: str = field(default_factory=lambda: os.getenv("DALIFIN_CONTACT_NAME", "Gang Li"))
     build_id: str = field(default_factory=lambda: os.getenv("DALIFIN_BUILD_ID", "dev"))
+    download_artifact_root: str = field(
+        default_factory=lambda: os.getenv(
+            "DALIFIN_DOWNLOAD_ARTIFACT_ROOT",
+            "/data/dali/web/root/mobile-downloads",
+        )
+    )
 
 
 @lru_cache(maxsize=1)

@@ -4,7 +4,7 @@ from pathlib import Path
 
 import httpx
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -231,6 +231,21 @@ def downloads_index(request: Request):
         catalog = get_catalog_entry(str(product.get("productKey") or ""))
         enriched.append({**product, "catalog": catalog})
     return _render(request, "downloads.html", products=enriched, error_message=error_message)
+
+
+@app.get("/downloads/{product_key}/{platform}/{channel}/{file_name}")
+def download_artifact(product_key: str, platform: str, channel: str, file_name: str):
+    settings = get_settings()
+    artifact_root = Path(settings.download_artifact_root).resolve()
+    artifact_path = (artifact_root / product_key / platform / channel / file_name).resolve()
+    try:
+        artifact_path.relative_to(artifact_root)
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail="Artifact not found") from exc
+    if not artifact_path.is_file():
+        raise HTTPException(status_code=404, detail="Artifact not found")
+    media_type = "application/vnd.android.package-archive" if artifact_path.suffix == ".apk" else None
+    return FileResponse(artifact_path, media_type=media_type, filename=file_name)
 
 
 @app.get("/downloads/{product_key}", response_class=HTMLResponse)
