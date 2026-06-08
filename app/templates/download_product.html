@@ -15,7 +15,18 @@
         <span>{{ latest.fileName }}</span>
         <span>{{ latest.minOsVersion or "Android" }}</span>
       </div>
-      <a class="button primary" href="{{ latest.artifactUrl }}">Download</a>
+      <div class="button-row">
+        <a class="button primary" href="{{ latest.artifactUrl }}">Android APK</a>
+        {% if catalog.ios_download_url %}
+        <a class="button secondary" href="{{ catalog.ios_download_url }}">{{ catalog.ios_download_label or "iPhone" }}</a>
+        {% endif %}
+      </div>
+    </div>
+    {% elif catalog.ios_download_url %}
+    <div class="release-callout">
+      <p class="release-label">iPhone</p>
+      <h2>{{ catalog.ios_download_label or "iPhone" }}</h2>
+      <a class="button secondary" href="{{ catalog.ios_download_url }}">Open</a>
     </div>
     {% endif %}
   </div>

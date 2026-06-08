@@ -68,6 +68,8 @@ PRODUCT_CATALOG: dict[str, dict[str, Any]] = {
         "summary": "A listener-focused Android build for live interpretation sessions, with app audio that is more reliable than a browser tab.",
         "accent": "harbor",
         "hero_label": "Dali Interpreter Listener",
+        "ios_download_url": "https://testflight.apple.com/join/aqJ11yA7",
+        "ios_download_label": "iPhone TestFlight",
         "features": [
             "Listen to live translated audio with fewer browser playback interruptions.",
             "Join public sessions quickly and sign in when a private session requires it.",
@@ -80,7 +82,7 @@ PRODUCT_CATALOG: dict[str, dict[str, Any]] = {
             },
             {
                 "question": "Should iPhone users use this APK?",
-                "answer": "No. iPhone users should use the Dali Interpreter Listener TestFlight beta link from the web listener page.",
+                "answer": "No. iPhone users should use the Dali Interpreter Listener TestFlight beta link on this page.",
             },
         ],
     },

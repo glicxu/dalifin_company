@@ -26,7 +26,12 @@
       <span>Public downloads: {{ "Yes" if product.publicDownloads else "No" }}</span>
       <span>Sign-in: {{ "Required" if product.requireSignIn else "Not required" }}</span>
     </div>
-    <a class="button secondary" href="/downloads/{{ product.productKey }}">View download page</a>
+    <div class="button-row">
+      <a class="button secondary" href="/downloads/{{ product.productKey }}">Android</a>
+      {% if product.catalog.ios_download_url %}
+      <a class="button secondary" href="{{ product.catalog.ios_download_url }}">iPhone</a>
+      {% endif %}
+    </div>
   </article>
   {% endfor %}
 </section>
