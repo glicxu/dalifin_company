@@ -159,6 +159,8 @@ def test_product_page_shows_latest_release_and_list() -> None:
     assert "Version 1.0.4" in response.text
     assert "Bug fixes." in response.text
     assert "https://downloads.example/mobile_bible.apk" in response.text
+    assert "iPhone TestFlight" in response.text
+    assert "https://testflight.apple.com/join/3K8BrU1t" in response.text
 
 
 def test_downloads_page_handles_api_failure_gracefully() -> None:

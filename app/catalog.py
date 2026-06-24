@@ -9,14 +9,21 @@ PRODUCT_CATALOG: dict[str, dict[str, Any]] = {
         "summary": "Fast reading, practical study tools, and an install flow that stays simple for church users.",
         "accent": "sunrise",
         "hero_label": "Mobile Bible",
+        "ios_download_url": "https://testflight.apple.com/join/3K8BrU1t",
+        "ios_download_label": "iPhone TestFlight",
         "features": [
-            "Quick reading and study workflows on Android.",
-            "Direct APK download from the canonical release feed.",
+            "Quick reading and study workflows on Android, iPhone, and iPad.",
+            "iPhone and iPad beta access through TestFlight.",
+            "Direct Android APK download from the canonical release feed.",
             "Release notes and version metadata pulled from app_server.",
         ],
         "faq": [
             {
-                "question": "How do I install it?",
+                "question": "How do I install the iPhone or iPad beta?",
+                "answer": "Open the TestFlight link on your iPhone or iPad, install Apple's TestFlight app if prompted, then tap Accept and Install for DaliBible.",
+            },
+            {
+                "question": "How do I install the Android build?",
                 "answer": "Download the APK to your Android device, open the file, and allow installation if Android prompts for permission.",
             },
             {
