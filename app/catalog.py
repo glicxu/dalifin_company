@@ -75,6 +75,8 @@ PRODUCT_CATALOG: dict[str, dict[str, Any]] = {
         "summary": "A listener-focused Android build for live interpretation sessions, with app audio that is more reliable than a browser tab.",
         "accent": "harbor",
         "hero_label": "Dali Interpreter Listener",
+        "android_store_url": "https://play.google.com/store/apps/details?id=com.dalifin.interprete.listener&pcampaignid=web_share",
+        "android_store_label": "Google Play",
         "ios_download_url": "https://testflight.apple.com/join/aqJ11yA7",
         "ios_download_label": "iPhone TestFlight",
         "features": [

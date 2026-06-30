@@ -16,7 +16,12 @@
         <span>{{ latest.minOsVersion or "Android" }}</span>
       </div>
       <div class="button-row">
+        {% if catalog.android_store_url %}
+        <a class="button primary" href="{{ catalog.android_store_url }}">{{ catalog.android_store_label or "Google Play" }}</a>
+        <a class="button secondary" href="{{ latest.artifactUrl }}">Android APK</a>
+        {% else %}
         <a class="button primary" href="{{ latest.artifactUrl }}">Android APK</a>
+        {% endif %}
         {% if catalog.ios_download_url %}
         <a class="button secondary" href="{{ catalog.ios_download_url }}">{{ catalog.ios_download_label or "iPhone" }}</a>
         {% endif %}
@@ -27,6 +32,12 @@
       <p class="release-label">iPhone</p>
       <h2>{{ catalog.ios_download_label or "iPhone" }}</h2>
       <a class="button secondary" href="{{ catalog.ios_download_url }}">Open</a>
+    </div>
+    {% elif catalog.android_store_url %}
+    <div class="release-callout">
+      <p class="release-label">Android</p>
+      <h2>{{ catalog.android_store_label or "Google Play" }}</h2>
+      <a class="button primary" href="{{ catalog.android_store_url }}">Open</a>
     </div>
     {% endif %}
   </div>
@@ -78,6 +89,9 @@
         <strong>{{ release.versionLabel }}</strong>
         <span>{{ release.publishedAt or "Unknown date" }}</span>
       </div>
+      {% if catalog.android_store_url and loop.first %}
+      <a href="{{ catalog.android_store_url }}">{{ catalog.android_store_label or "Google Play" }}</a>
+      {% endif %}
       <a href="{{ release.artifactUrl }}">Download</a>
     </article>
     {% endfor %}
