@@ -70,7 +70,7 @@ def test_privacy_page_renders_app_store_policy_content() -> None:
     assert "Dalifin Privacy Policy." in response.text
     assert "Dalifin LLC" in response.text
     assert "gli@dalifin.com" in response.text
-    assert "Audio and transcript content" in response.text
+    assert "This general policy" in response.text
     assert "Stripe" in response.text
 
 
