@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}{{ policy.app_name }} Privacy Policy | {{ site_name }}{% endblock %}
+{% block content %}
+<section class="content-hero">
+  <div class="container">
+    <p class="eyebrow">Privacy</p>
+    <h1>{{ policy.app_name }} Privacy Policy.</h1>
+    <p class="lede">{{ policy.summary }}</p>
+    <p class="quiet-note">Effective date: {{ policy.effective_date }}</p>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container policy-layout">
+    <article class="content-card policy-card">
+      <h2>Developer and scope</h2>
+      <p>
+        This policy explains how Dalifin LLC accesses, uses, stores, and shares information
+        when you use {{ policy.app_name }}. For privacy questions or data requests, contact
+        <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>.
+      </p>
+    </article>
+
+    {% for section in policy.sections %}
+    <article class="content-card policy-card">
+      <h2>{{ section.title }}</h2>
+      {% for paragraph in section.get("paragraphs", []) %}
+      <p>{{ paragraph }}</p>
+      {% endfor %}
+      {% if section.get("bullets") %}
+      <ul class="policy-list">
+        {% for bullet in section.bullets %}
+        <li>{{ bullet }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </article>
+    {% endfor %}
+
+    <article class="content-card policy-card">
+      <h2>Security</h2>
+      <p>
+        Dalifin uses reasonable technical and organizational safeguards appropriate to the
+        information handled by {{ policy.app_name }}, including private application storage,
+        secure operating-system storage where appropriate, HTTPS for network requests, and
+        access controls for Dalifin services. No storage or transmission method is completely secure.
+      </p>
+    </article>
+
+    <article class="content-card policy-card">
+      <h2>Children</h2>
+      <p>
+        {{ policy.app_name }} is not directed to children under 13, and Dalifin does not knowingly
+        collect personal information from children under 13 through this app. Contact us if you
+        believe a child has provided personal information.
+      </p>
+    </article>
+
+    <article class="content-card policy-card">
+      <h2>Changes and contact</h2>
+      <p>
+        Dalifin may update this policy when {{ policy.app_name }} changes. The effective date above
+        identifies the current version. For questions, access requests, or deletion requests,
+        email <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>.
+      </p>
+    </article>
+  </div>
+</section>
+{% endblock %}

@@ -11,6 +11,7 @@ from fastapi.templating import Jinja2Templates
 from app.catalog import get_catalog_entry
 from app.config import get_settings, resolved_portal_url
 from app.download_api import DownloadApiClient, DownloadApiError, DownloadApiNotFound
+from app.privacy import get_app_privacy_policy
 
 BASE_DIR = Path(__file__).resolve().parent
 templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
@@ -168,6 +169,19 @@ def privacy_page(request: Request):
         request,
         "privacy.html",
         contact_email=settings.contact_email,
+    )
+
+@app.get("/privacy/{app_name}", response_class=HTMLResponse)
+def app_privacy_page(request: Request, app_name: str):
+    policy = get_app_privacy_policy(app_name)
+    if policy is None:
+        raise HTTPException(status_code=404, detail="App privacy policy not found")
+    settings = get_settings()
+    return _render(
+        request,
+        "privacy/app_policy.html",
+        contact_email=settings.contact_email,
+        policy=policy,
     )
 
 
