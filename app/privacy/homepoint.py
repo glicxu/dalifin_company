@@ -7,16 +7,23 @@ POLICY = {
     ),
     "sections": [
         {
-            "title": "Location data HomePoint accesses",
+            "title": "Location data HomePoint collects, accesses, and uses",
             "paragraphs": [
-                "HomePoint accesses approximate and precise location, including coordinates, altitude, accuracy, timestamps, and route points. Location may be accessed while the app is visible and in the background only while the user has an active outbound or return-navigation session.",
-                "HomePoint uses this information to save the user-selected Home Point, record the outbound route, calculate distance and direction, detect arrival, and continue return guidance while the screen is locked or the app is in the background.",
+                "HomePoint collects and accesses location data provided by the user's device, including approximate location, precise location (GPS coordinates), altitude, location accuracy, timestamps, and the route points created from those readings.",
+                "HomePoint collects location while the app is visible and in the background, including when the screen is locked or the user is not actively viewing the app. Background collection begins only after the user sets a Home Point and continues only during that active outbound-recording or Return Home navigation session.",
+                "HomePoint uses this location data to save the user-selected Home Point, record the outbound route, calculate distance and direction, detect off-route movement and arrival, and continue Return Home guidance in the background.",
+            ],
+        },
+        {
+            "title": "Android location permissions",
+            "paragraphs": [
+                "On Android, HomePoint requests ACCESS_COARSE_LOCATION and ACCESS_FINE_LOCATION to determine the Home Point and route. It requests ACCESS_BACKGROUND_LOCATION so an active route recording or Return Home navigation session can continue when HomePoint is not visible. HomePoint does not use these permissions when there is no active Home Point session.",
             ],
         },
         {
             "title": "On-device processing and sharing",
             "paragraphs": [
-                "The Home Point and recorded route are stored in the app's private storage on the user's device. The Android HomePoint app has no Internet permission and does not transmit location or route data to Dalifin servers, advertisers, analytics providers, or other third parties.",
+                "HomePoint stores the Home Point and recorded location route only in the app's private storage on the user's device. The Android HomePoint app has no Internet permission. HomePoint does not transmit location or route data and does not share that data with Dalifin servers, advertisers, analytics providers, or any other third party.",
                 "Dalifin does not sell HomePoint location data and does not use it for advertising, profiling, or analytics.",
             ],
         },
