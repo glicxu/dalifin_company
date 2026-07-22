@@ -10,9 +10,16 @@ POLICY = {
             "title": "Information Dali Wilderness accesses",
             "bullets": [
                 "Approximate and precise location, including background location during active recording or navigation, plus coordinates, altitude, accuracy, timestamps, speed, and route points.",
-                "Physical-activity and step information used to improve recording and distinguish movement from GPS drift.",
                 "User-created tracks, waypoints, trips, saved locations, sketches, notes, photos, audio, and imported or exported files.",
                 "Store product and transaction status needed to buy, restore, and cache the optional lifetime entitlement.",
+            ],
+        },
+        {
+            "title": "Physical activity and step data",
+            "paragraphs": [
+                "During an active recording or navigation session, Dali Wilderness can access the device step counter through Android Physical activity (ACTIVITY_RECOGNITION) permission or the equivalent device motion capability. It uses the session step count and recent step changes to measure trip activity, distinguish real walking from stationary GPS drift, and improve route recording and navigation direction stability.",
+                "If the user declines permission or step activity is unavailable, Dali Wilderness continues recording and navigating with GPS and compass data, but step-based activity and drift assistance are unavailable.",
+                "Dali Wilderness stores the session step count and step values associated with recorded route points in the app's private storage on the device. This data can be included in a backup or export only when the user initiates that action. Dali Wilderness does not use step data to create an advertising or health profile, automatically upload it to Dalifin, or share it with advertisers or analytics providers.",
             ],
         },
         {

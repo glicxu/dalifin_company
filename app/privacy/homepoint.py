@@ -21,9 +21,17 @@ POLICY = {
             ],
         },
         {
+            "title": "Optional physical activity and step data",
+            "paragraphs": [
+                "During an active Home Point session, HomePoint can optionally access recent step-counter changes through Android Physical activity (ACTIVITY_RECOGNITION) permission or the equivalent device motion capability. It uses this limited signal only to distinguish real walking from stationary GPS drift and improve navigation direction stability.",
+                "HomePoint explains this use before requesting permission. If the user declines permission or step activity is unavailable, HomePoint continues using GPS and compass guidance. The user can disable motion assistance in HomePoint Settings.",
+                "Step changes are processed temporarily on the device. HomePoint does not retain session or daily step totals, attach step counts to the saved route, create a fitness or health profile, transmit motion data, or share it with Dalifin, advertisers, analytics providers, or other third parties.",
+            ],
+        },
+        {
             "title": "On-device processing and sharing",
             "paragraphs": [
-                "HomePoint stores the Home Point and recorded location route only in the app's private storage on the user's device. The Android HomePoint app has no Internet permission. HomePoint does not transmit location or route data and does not share that data with Dalifin servers, advertisers, analytics providers, or any other third party.",
+                "HomePoint stores the Home Point and recorded location route only in the app's private storage on the user's device. The Android HomePoint app has no Internet permission. HomePoint does not transmit location, route, or physical activity data and does not share that data with Dalifin servers, advertisers, analytics providers, or any other third party.",
                 "Dalifin does not sell HomePoint location data and does not use it for advertising, profiling, or analytics.",
             ],
         },
