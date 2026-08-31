@@ -32,7 +32,14 @@ def test_homepage_renders_core_message() -> None:
     assert "Create Agents. Orchestrate Intelligence." in response.text
     assert "What Is Agentic Development?" in response.text
     assert 'href="/support"' in response.text
+    assert 'href="/payments"' in response.text
     assert 'href="/privacy"' in response.text
+
+
+def test_public_pages_accept_head_requests() -> None:
+    for path in ("/", "/about", "/contact", "/support", "/payments", "/downloads"):
+        response = client.head(path)
+        assert response.status_code == 200
 
 
 def test_sso_route_redirects_to_portal() -> None:
@@ -53,18 +60,28 @@ def test_contact_page_renders_contact_details() -> None:
     assert "gli@dalifin.com" in response.text
 
 
-def test_support_page_renders_payment_form() -> None:
+def test_support_page_renders_app_support_content() -> None:
     response = client.get("/support")
     assert response.status_code == 200
     assert "Get help with Dalifin apps and services." in response.text
     assert "gli@dalifin.com" in response.text
     assert "Dali Interpreter Listener, Host, and Personal" in response.text
     assert "/privacy" in response.text
+    assert "/payments" in response.text
+    assert "id=\"support-payment-form\"" not in response.text
+    assert "support_checkout.js" not in response.text
+
+
+def test_payments_page_renders_payment_form() -> None:
+    response = client.get("/payments")
+    assert response.status_code == 200
+    assert "Support Dalifin by credit card." in response.text
+    assert "/support" in response.text
     assert "id=\"support-payment-form\"" in response.text
     assert "support_checkout.js" in response.text
 
 
-def test_privacy_page_renders_app_store_policy_content() -> None:
+def test_privacy_page_renders_general_company_policy_and_app_directory() -> None:
     response = client.get("/privacy")
     assert response.status_code == 200
     assert "Dalifin Privacy Policy." in response.text
@@ -72,6 +89,129 @@ def test_privacy_page_renders_app_store_policy_content() -> None:
     assert "gli@dalifin.com" in response.text
     assert "This general policy" in response.text
     assert "Stripe" in response.text
+    assert 'href="/privacy/classroom"' in response.text
+    assert 'href="/privacy/dali-interpreter"' in response.text
+    assert 'href="/privacy/homepoint"' in response.text
+    assert 'href="/privacy/daligo"' in response.text
+    assert 'href="/privacy/dalitrail"' in response.text
+    assert 'href="/privacy/dali-wilderness"' in response.text
+
+
+def test_privacy_pages_accept_head_requests_for_store_validators() -> None:
+    for path in (
+        "/privacy",
+        "/privacy/classroom",
+        "/privacy/homepoint",
+        "/privacy/daligo",
+        "/support/daligo",
+        "/account-deletion/classroom",
+        "/account-deletion/daligo",
+    ):
+        response = client.head(path)
+        assert response.status_code == 200
+        assert response.headers["content-type"].startswith("text/html")
+
+
+def test_daligo_account_deletion_page_provides_external_request_path() -> None:
+    response = client.get("/account-deletion/daligo")
+    assert response.status_code == 200
+    assert "Request deletion of your Daligo account and data" in response.text
+    assert "Dalifin LLC" in response.text
+    assert "Daligo account deletion request" in response.text
+    assert "mailto:gli@dalifin.com" in response.text
+    assert "within 30 days" in response.text
+    assert "does not cancel a subscription" in response.text
+
+
+def test_classroom_account_deletion_page_provides_external_request_path() -> None:
+    response = client.get("/account-deletion/classroom")
+    assert response.status_code == 200
+    assert "Request deletion of your Dali Classroom account and associated data" in response.text
+    assert "Dalifin LLC" in response.text
+    assert "Dali Classroom account and data deletion request" in response.text
+    assert "mailto:gli@dalifin.com" in response.text
+    assert "Delete Classroom data only" in response.text
+    assert "Delete the shared Dali account" in response.text
+    assert "within 30 days" in response.text
+    assert "does not cancel a subscription" in response.text
+
+
+def test_dali_interpreter_privacy_page_contains_interpreter_disclosures() -> None:
+    response = client.get("/privacy/dali-interpreter")
+    assert response.status_code == 200
+    assert "Dali Interpreter Privacy Policy" in response.text
+    assert "Live audio" in response.text
+    assert "transcripts" in response.text
+    assert "third-party hosting" in response.text
+    assert "Dalifin LLC" in response.text
+
+
+def test_classroom_privacy_page_discloses_private_text_and_transient_audio() -> None:
+    response = client.get("/privacy/classroom")
+    assert response.status_code == 200
+    assert "Dali Classroom Privacy Policy" in response.text
+    assert "does not save source audio" in response.text
+    assert "Google Gemini" in response.text
+    assert "OpenAI" in response.text
+    assert "private, student-owned Classroom content" in response.text
+    assert "delete Classroom content" in response.text
+    assert "shared Dali identity" in response.text
+    assert "does not require location" in response.text
+    assert "Dalifin LLC" in response.text
+    assert 'href="/account-deletion/classroom"' in response.text
+
+
+def test_homepoint_privacy_page_discloses_background_location() -> None:
+    response = client.get("/privacy/homepoint")
+    assert response.status_code == 200
+    assert "HomePoint Privacy Policy" in response.text
+    assert "precise location" in response.text
+    assert "in the background" in response.text
+    assert "does not transmit location" in response.text
+    assert "Physical activity" in response.text
+    assert "does not retain session or daily step totals" in response.text
+    assert "continues using GPS and compass" in response.text
+    assert "Dalifin LLC" in response.text
+
+
+def test_dalitrail_privacy_page_discloses_online_and_local_processing() -> None:
+    response = client.get("/privacy/dalitrail")
+    assert response.status_code == 200
+    assert "DaliTrail Privacy Policy" in response.text
+    assert "background location" in response.text
+    assert "Open-Meteo" in response.text
+    assert "Nominatim" in response.text
+    assert "live sharing" in response.text
+
+
+def test_daligo_privacy_page_discloses_group_and_nearby_sharing() -> None:
+    response = client.get("/privacy/daligo")
+    assert response.status_code == 200
+    assert "Daligo Privacy Policy" in response.text
+    assert "background location" in response.text
+    assert "members of that trip" in response.text
+    assert "Bluetooth" in response.text
+    assert "local Wi-Fi" in response.text
+    assert "public recap" in response.text
+
+
+def test_dali_wilderness_privacy_page_discloses_optional_location_services() -> None:
+    response = client.get("/privacy/dali-wilderness")
+    assert response.status_code == 200
+    assert "Dali Wilderness Privacy Policy" in response.text
+    assert "background location" in response.text
+    assert "Open-Meteo" in response.text
+    assert "Look Up Address" in response.text
+    assert "Physical activity" in response.text
+    assert "session step count" in response.text
+    assert "continues recording and navigating with GPS and compass" in response.text
+    assert "backup or export only when the user initiates" in response.text
+    assert "Delete All Local Data" in response.text
+
+
+def test_unknown_app_privacy_page_returns_not_found() -> None:
+    response = client.get("/privacy/not-an-app")
+    assert response.status_code == 404
 
 
 def test_support_payment_config_proxies_to_payment_service() -> None:
@@ -125,7 +265,7 @@ def test_downloads_page_lists_products_from_api() -> None:
         ]
         response = client.get("/downloads")
     assert response.status_code == 200
-    assert "Mobile Bible for Android" in response.text
+    assert "DaliBible for Android" in response.text
     assert "/downloads/mobile_bible" in response.text
 
 

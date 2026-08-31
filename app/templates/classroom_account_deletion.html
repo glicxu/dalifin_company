@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Delete your Dali Classroom account and data | {{ site_name }}{% endblock %}
+{% block content %}
+<section class="content-hero support-hero">
+  <div class="container">
+    <p class="eyebrow">Dali Classroom account and data deletion</p>
+    <h1>Request deletion of your Dali Classroom account and associated data.</h1>
+    <p class="lede">
+      Dali Classroom is provided by Dalifin LLC. You can delete your Classroom
+      data in the app or submit a request here if you can no longer access it.
+    </p>
+  </div>
+</section>
+
+<section class="content-section support-section">
+  <div class="container support-layout">
+    <article class="content-card support-copy">
+      <h2>Request deletion by email</h2>
+      <p>
+        Email
+        <a href="mailto:{{ contact_email }}?subject=Dali%20Classroom%20account%20and%20data%20deletion%20request">{{ contact_email }}</a>
+        from the email address registered to your Dali account. Use the subject
+        <strong>Dali Classroom account and data deletion request</strong>.
+      </p>
+      <p>Tell us which option you want:</p>
+      <ul class="policy-list">
+        <li>
+          <strong>Delete Classroom data only:</strong> delete your courses,
+          classes, transcripts, translations, summaries, notes, and Classroom
+          access while preserving your shared Dali identity and other Dali services.
+        </li>
+        <li>
+          <strong>Delete the shared Dali account:</strong> delete your Classroom
+          data and disable the shared Dali identity used to access Dali Classroom,
+          Dali Interpreter Host, and other Dali services.
+        </li>
+      </ul>
+      <p>
+        We may ask you to verify control of the registered email address before
+        processing the request. Do not send your password, payment-card details,
+        or identity documents by email.
+      </p>
+      <p>
+        We will acknowledge the request and normally complete verified requests
+        within 30 days. We will contact you if additional time is required by law.
+      </p>
+    </article>
+
+    <article class="content-card support-copy">
+      <h2>Delete in the Dali Classroom app</h2>
+      <p>
+        If you can sign in, open <strong>Account</strong>, select
+        <strong>Delete data or account</strong>, and choose either
+        <strong>Delete Classroom data only</strong> or the shared-account option.
+        Follow the confirmation steps shown in the app.
+      </p>
+      <p>
+        Deletion is permanent. Export anything you want to keep before submitting
+        the request.
+      </p>
+    </article>
+
+    <article class="content-card support-copy">
+      <h2>Data covered by deletion</h2>
+      <p>
+        Classroom-only deletion removes account-associated Classroom content,
+        including courses, classes, transcripts, translations, summaries, notes,
+        preferences, Classroom usage records, and Classroom access or entitlement
+        assignments, subject to the limited retention described below.
+      </p>
+      <p>
+        Choosing shared Dali-account deletion also disables the shared identity and
+        affects access to other Dali products. We will explain any additional
+        product-specific consequences during verification before completing that
+        broader request.
+      </p>
+    </article>
+
+    <article class="content-card support-copy">
+      <h2>Limited retention and subscriptions</h2>
+      <p>
+        Dalifin may retain narrowly limited records when required for legal,
+        accounting, security, fraud-prevention, dispute-resolution, or enforcement
+        purposes. Retained data is restricted to those purposes and deleted when the
+        applicable retention requirement ends. See the
+        <a href="/privacy/classroom">Dali Classroom Privacy Policy</a> for more information.
+      </p>
+      <p>
+        Deleting Classroom data or a Dali account does not cancel a subscription
+        managed by Google Play or Apple. Cancel it separately in your
+        <a href="https://support.google.com/googleplay/answer/7018481">Google Play subscriptions</a>
+        or
+        <a href="https://support.apple.com/118428">Apple subscriptions</a>
+        settings to prevent future renewals.
+      </p>
+    </article>
+  </div>
+</section>
+{% endblock %}

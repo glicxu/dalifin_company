@@ -9,8 +9,15 @@ This requirement covers the public URLs currently referenced by the Dali Interpr
 - `https://dalifin.com`
 - `https://dalifin.com/support`
 - `https://dalifin.com/privacy`
+- `https://dalifin.com/privacy/classroom`
+- `https://dalifin.com/account-deletion/classroom`
+- `https://dalifin.com/privacy/dali-interpreter`
+- `https://dalifin.com/privacy/homepoint`
+- `https://dalifin.com/privacy/dalitrail`
+- `https://dalifin.com/privacy/dali-wilderness`
 
-The same URL pattern should also support Dali Interpreter Host, Dali Interpreter Personal, and Dali Bible unless product-specific pages are later required.
+The Dali Interpreter policy covers Listener, Host, and Personal. Dali Bible can
+receive its own app-specific route when its data practices are finalized.
 
 ## Required Routes
 
@@ -41,7 +48,7 @@ Required content:
 - Product support contact email.
 - Clear instructions for users needing help with TestFlight, account access, listener sessions, payments, or downloads.
 - A statement that users should include app name, platform, app version/build if available, and a short description of the issue.
-- Optional payment/support contribution UI may remain, but it must not be the only support content.
+- Links to the separate payments page may remain, but the support URL must not require payment setup.
 
 Acceptance criteria:
 
@@ -52,18 +59,17 @@ Acceptance criteria:
 
 ### `/privacy`
 
-The privacy page must serve as the App Store privacy policy URL.
+The privacy page is the general Dalifin company and shared-services policy. It
+also serves as the public directory for app-specific policies.
 
 Required content:
 
 - Legal publisher name: Dalifin LLC.
 - Effective date.
 - Contact email for privacy questions.
-- Plain-language description of data collected by the apps.
-- Plain-language description of why data is used.
-- Whether audio, transcripts, session codes, account identifiers, device/app diagnostics, and payment information are collected or processed.
+- Plain-language description of data handled by Dalifin websites and shared services.
+- Plain-language description of why that data is used.
 - Statement that payment card details, when used, are handled by Stripe and not stored by Dalifin servers.
-- Statement that live interpretation audio/transcripts may be processed by Dalifin services and third-party AI/service providers for providing the requested app functionality.
 - Data retention summary.
 - User choices and deletion/contact process.
 - Children/privacy statement if the app is not intended for children.
@@ -77,13 +83,43 @@ Acceptance criteria:
 - Page is readable without authentication.
 - Page avoids placeholder text.
 
+### App-specific privacy routes
+
+Apps with different data practices use separate public policies:
+
+- Dali Classroom: `/privacy/classroom`
+- Dali Interpreter: `/privacy/dali-interpreter`
+- HomePoint: `/privacy/homepoint`
+- DaliTrail: `/privacy/dalitrail`
+- Dali Wilderness: `/privacy/dali-wilderness`
+
+The implementation keeps each policy's content in its own module under
+`app/privacy/`, registers public slugs in `app/privacy/registry.py`, and renders
+them with the shared `app/templates/privacy/app_policy.html` template.
+
+### `/account-deletion/classroom`
+
+The public Classroom deletion resource supports users who no longer have access
+to the app. It provides an email pathway to request either Classroom-only data
+deletion or deletion of the shared Dali account, explains verification without
+requesting passwords, identifies the data covered, describes limited retention,
+and reminds users to cancel store-managed subscriptions separately.
+
+Acceptance criteria:
+
+- `GET` and `HEAD https://dalifin.com/account-deletion/classroom` return HTTP 200.
+- The page identifies Dali Classroom and Dalifin LLC.
+- A visible email link initiates an account-and-data deletion request.
+- Classroom-only and shared Dali-account deletion choices are explained.
+- The page links to `/privacy/classroom` and requires no sign-in.
+
 ## App Store Metadata Dependencies
 
 The Dali Interpreter Listener metadata currently uses:
 
 - Marketing URL: `https://dalifin.com`
 - Support URL: `https://dalifin.com/support`
-- Privacy Policy URL: `https://dalifin.com/privacy`
+- Privacy Policy URL: `https://dalifin.com/privacy/dali-interpreter`
 
 Before App Store submission, all three URLs must be publicly reachable and stable. TestFlight internal testing may proceed earlier, but external testing and full App Review can be blocked or rejected if support/privacy URLs fail to load.
 
@@ -109,8 +145,8 @@ Update navigation in `base.html`:
 
 Enhance `support.html`:
 
-- Keep the existing support payment flow if desired.
-- Add a clear product-support section above or beside payment content.
+- Keep product support and billing-help instructions on `/support`.
+- Move contribution payment UI to a separate page if payment controls would distract from App Store support requirements.
 
 Add tests:
 
@@ -123,4 +159,4 @@ Add tests:
 - Final support email: currently expected to use `DALIFIN_CONTACT_EMAIL`.
 - Final privacy contact email: can use the same contact email unless legal requires a separate mailbox.
 - Whether to add product-specific support anchors, for example `/support#dali-interpreter-listener`.
-- Whether to add product-specific privacy sections for Dali Interpreter and Dali Bible.
+- Whether to add a product-specific privacy route for Dali Bible.

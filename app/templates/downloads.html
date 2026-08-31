@@ -20,7 +20,7 @@
   {% for product in products %}
   <article class="product-card accent-{{ product.catalog.accent }}">
     <p class="eyebrow">{{ product.catalog.hero_label }}</p>
-    <h2>{{ product.displayName }}</h2>
+    <h2>{{ product.catalog.card_title or product.displayName }}</h2>
     <p>{{ product.catalog.summary }}</p>
     <div class="meta-row">
       <span>Public downloads: {{ "Yes" if product.publicDownloads else "No" }}</span>

@@ -21,6 +21,16 @@
       </p>
     </article>
 
+    {% if policy.get("account_deletion_path") %}
+    <article class="content-card policy-card">
+      <h2>Account and data deletion</h2>
+      <p>
+        <a href="{{ policy.account_deletion_path }}">Request deletion of your {{ policy.app_name }} account and associated data</a>,
+        including when you can no longer access the app.
+      </p>
+    </article>
+    {% endif %}
+
     {% for section in policy.sections %}
     <article class="content-card policy-card">
       <h2>{{ section.title }}</h2>

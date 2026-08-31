@@ -389,7 +389,14 @@ a {
 
 .support-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.78fr) minmax(0, 0.78fr) minmax(320px, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+  align-items: start;
+}
+
+.payment-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(320px, 1fr);
   gap: 32px;
   align-items: start;
 }
@@ -598,6 +605,7 @@ a {
   .prose-grid,
   .details-layout,
   .policy-layout,
+  .payment-layout,
   .support-layout {
     grid-template-columns: 1fr 1fr;
   }
@@ -625,6 +633,7 @@ a {
   .prose-grid,
   .details-layout,
   .policy-layout,
+  .payment-layout,
   .support-layout,
   .release-details {
     grid-template-columns: 1fr;

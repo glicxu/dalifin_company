@@ -9,7 +9,8 @@ Current scope:
 - contact page
 - privacy policy page for App Store metadata
 - `/app` portal redirect
-- `/support` credit-card support page backed by `dali_payment_service`
+- `/support` app and billing support page
+- `/payments` credit-card contribution page backed by `dali_payment_service`
 - downloads index
 - per-product download pages
 - presentation-only catalog content
@@ -76,7 +77,15 @@ Environment variables:
 - `/about`
 - `/contact`
 - `/privacy`
+- `/privacy/classroom`
+- `/privacy/dali-interpreter`
+- `/privacy/homepoint`
+- `/privacy/dalitrail`
+- `/privacy/dali-wilderness`
 - `/support`
+- `/account-deletion/classroom`
+- `/account-deletion/daligo`
+- `/payments`
 - `/support/api/config`
 - `/support/api/create-payment-intent`
 - `/support/api/create-setup-intent`

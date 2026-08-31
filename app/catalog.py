@@ -8,7 +8,8 @@ PRODUCT_CATALOG: dict[str, dict[str, Any]] = {
         "headline": "Scripture study built for the phone, not squeezed onto it.",
         "summary": "Fast reading, practical study tools, and an install flow that stays simple for church users.",
         "accent": "sunrise",
-        "hero_label": "Mobile Bible",
+        "hero_label": "DaliBible",
+        "card_title": "DaliBible for Android",
         "ios_download_url": "https://testflight.apple.com/join/3K8BrU1t",
         "ios_download_label": "iPhone TestFlight",
         "features": [

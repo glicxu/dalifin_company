@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Delete your Daligo account | {{ site_name }}{% endblock %}
+{% block content %}
+<section class="content-hero support-hero">
+  <div class="container">
+    <p class="eyebrow">Daligo account deletion</p>
+    <h1>Request deletion of your Daligo account and data.</h1>
+    <p class="lede">
+      Daligo is provided by Dalifin LLC. You can delete your account in the app or
+      submit a request here if you no longer have access to the app.
+    </p>
+  </div>
+</section>
+
+<section class="content-section support-section">
+  <div class="container support-layout">
+    <article class="content-card support-copy">
+      <h2>Request deletion by email</h2>
+      <p>
+        Email
+        <a href="mailto:{{ contact_email }}?subject=Daligo%20account%20deletion%20request">{{ contact_email }}</a>
+        from the email address registered to your Daligo account. Use the subject
+        <strong>Daligo account deletion request</strong> and state that you want your
+        Daligo account and associated data deleted.
+      </p>
+      <p>
+        We may ask you to verify control of the registered email address before
+        processing the request. Do not send your password, payment-card details, or
+        identity documents by email.
+      </p>
+      <p>
+        We will acknowledge the request and normally complete verified requests
+        within 30 days. We will contact you if additional time is required by law.
+      </p>
+    </article>
+
+    <article class="content-card support-copy">
+      <h2>Delete in the Daligo app</h2>
+      <p>
+        If you can sign in, open <strong>Settings</strong>, select
+        <strong>Account</strong>, and choose <strong>Delete Account</strong>. Follow
+        the confirmation steps shown in the app.
+      </p>
+      <p>
+        Account deletion is permanent. Export anything you want to keep before
+        submitting the request.
+      </p>
+    </article>
+
+    <article class="content-card support-copy">
+      <h2>Data covered by deletion</h2>
+      <p>
+        Deletion removes the Daligo account and account-associated server data,
+        including profile information, trip membership, messages, shared location
+        history, tracks, photos, contributions, and subscription-entitlement records,
+        subject to the exceptions below.
+      </p>
+      <p>
+        Content copied to another member's device through nearby sharing may remain
+        on that device until the recipient deletes it. Content another user created
+        is not deleted as part of your request.
+      </p>
+    </article>
+
+    <article class="content-card support-copy">
+      <h2>Limited retention and subscriptions</h2>
+      <p>
+        Dalifin may retain narrowly limited records when required for legal,
+        accounting, security, fraud-prevention, dispute-resolution, or enforcement
+        purposes. Retained data is restricted to those purposes and deleted when the
+        applicable retention requirement ends. See the
+        <a href="/privacy/daligo">Daligo Privacy Policy</a> for more information.
+      </p>
+      <p>
+        Deleting a Daligo account does not cancel a subscription managed by Google
+        Play or Apple. Cancel it separately in your
+        <a href="https://support.google.com/googleplay/answer/7018481">Google Play subscriptions</a>
+        or
+        <a href="https://support.apple.com/118428">Apple subscriptions</a>
+        settings to prevent future renewals.
+      </p>
+    </article>
+  </div>
+</section>
+{% endblock %}

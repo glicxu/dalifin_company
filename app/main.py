@@ -115,7 +115,7 @@ async def _forward_payment_request(path: str, payload: dict | None = None) -> JS
     return JSONResponse(body, status_code=response.status_code)
 
 
-@app.get("/", response_class=HTMLResponse)
+@app.api_route("/", methods=["GET", "HEAD"], response_class=HTMLResponse)
 def homepage(request: Request):
     return _render(
         request,
@@ -124,13 +124,13 @@ def homepage(request: Request):
     )
 
 
-@app.get("/sso")
+@app.api_route("/sso", methods=["GET", "HEAD"])
 def legacy_sso_redirect():
     settings = get_settings()
     return RedirectResponse(resolved_portal_url(settings), status_code=307)
 
 
-@app.get("/about", response_class=HTMLResponse)
+@app.api_route("/about", methods=["GET", "HEAD"], response_class=HTMLResponse)
 def about_page(request: Request):
     settings = get_settings()
     return _render(
@@ -140,7 +140,7 @@ def about_page(request: Request):
     )
 
 
-@app.get("/contact", response_class=HTMLResponse)
+@app.api_route("/contact", methods=["GET", "HEAD"], response_class=HTMLResponse)
 def contact_page(request: Request):
     settings = get_settings()
     return _render(
@@ -152,17 +152,52 @@ def contact_page(request: Request):
     )
 
 
-@app.get("/support", response_class=HTMLResponse)
-def support_page(request: Request):
+@app.api_route("/support", methods=["GET", "HEAD"], response_class=HTMLResponse)
+@app.api_route(
+    "/support/{app_name}", methods=["GET", "HEAD"], response_class=HTMLResponse
+)
+def support_page(request: Request, app_name: str | None = None):
     settings = get_settings()
     return _render(
         request,
         "support.html",
         contact_email=settings.contact_email,
+        app_name=app_name,
     )
 
 
-@app.get("/privacy", response_class=HTMLResponse)
+@app.api_route(
+    "/account-deletion/daligo", methods=["GET", "HEAD"], response_class=HTMLResponse
+)
+def daligo_account_deletion_page(request: Request):
+    settings = get_settings()
+    return _render(
+        request,
+        "daligo_account_deletion.html",
+        contact_email=settings.contact_email,
+    )
+
+
+@app.api_route(
+    "/account-deletion/classroom",
+    methods=["GET", "HEAD"],
+    response_class=HTMLResponse,
+)
+def classroom_account_deletion_page(request: Request):
+    settings = get_settings()
+    return _render(
+        request,
+        "classroom_account_deletion.html",
+        contact_email=settings.contact_email,
+    )
+
+
+@app.api_route("/payments", methods=["GET", "HEAD"], response_class=HTMLResponse)
+def payments_page(request: Request):
+    return _render(request, "payments.html")
+
+
+@app.api_route("/privacy", methods=["GET", "HEAD"], response_class=HTMLResponse)
 def privacy_page(request: Request):
     settings = get_settings()
     return _render(
@@ -171,7 +206,10 @@ def privacy_page(request: Request):
         contact_email=settings.contact_email,
     )
 
-@app.get("/privacy/{app_name}", response_class=HTMLResponse)
+
+@app.api_route(
+    "/privacy/{app_name}", methods=["GET", "HEAD"], response_class=HTMLResponse
+)
 def app_privacy_page(request: Request, app_name: str):
     policy = get_app_privacy_policy(app_name)
     if policy is None:
@@ -225,13 +263,13 @@ async def support_create_setup_intent(request: Request):
     return await _forward_payment_request("/create-setup-intent", forwarded_payload)
 
 
-@app.get("/app")
+@app.api_route("/app", methods=["GET", "HEAD"])
 def app_portal_redirect():
     settings = get_settings()
     return RedirectResponse(resolved_portal_url(settings), status_code=307)
 
 
-@app.get("/downloads", response_class=HTMLResponse)
+@app.api_route("/downloads", methods=["GET", "HEAD"], response_class=HTMLResponse)
 def downloads_index(request: Request):
     client = get_download_api_client()
     products: list[dict] = []
@@ -247,7 +285,10 @@ def downloads_index(request: Request):
     return _render(request, "downloads.html", products=enriched, error_message=error_message)
 
 
-@app.get("/downloads/{product_key}/{platform}/{channel}/{file_name}")
+@app.api_route(
+    "/downloads/{product_key}/{platform}/{channel}/{file_name}",
+    methods=["GET", "HEAD"],
+)
 def download_artifact(product_key: str, platform: str, channel: str, file_name: str):
     settings = get_settings()
     artifact_root = Path(settings.download_artifact_root).resolve()
@@ -262,7 +303,9 @@ def download_artifact(product_key: str, platform: str, channel: str, file_name: 
     return FileResponse(artifact_path, media_type=media_type, filename=file_name)
 
 
-@app.get("/downloads/{product_key}", response_class=HTMLResponse)
+@app.api_route(
+    "/downloads/{product_key}", methods=["GET", "HEAD"], response_class=HTMLResponse
+)
 def downloads_product(request: Request, product_key: str):
     client = get_download_api_client()
     catalog = get_catalog_entry(product_key)
