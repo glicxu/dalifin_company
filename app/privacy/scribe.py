@@ -1,6 +1,6 @@
 POLICY = {
     "app_name": "Dali Scribe",
-    "effective_date": "September 3, 2026",
+    "effective_date": "September 2, 2026",
     "summary": (
         "Dali Scribe provides live transcription, editable session history, "
         "AI-generated summaries, notes, and user-directed exports."
