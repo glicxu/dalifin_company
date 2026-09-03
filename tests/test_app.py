@@ -91,6 +91,7 @@ def test_privacy_page_renders_general_company_policy_and_app_directory() -> None
     assert "Stripe" in response.text
     assert 'href="/privacy/classroom"' in response.text
     assert 'href="/privacy/dali-interpreter"' in response.text
+    assert 'href="/privacy/scribe"' in response.text
     assert 'href="/privacy/homepoint"' in response.text
     assert 'href="/privacy/daligo"' in response.text
     assert 'href="/privacy/dalitrail"' in response.text
@@ -101,6 +102,7 @@ def test_privacy_pages_accept_head_requests_for_store_validators() -> None:
     for path in (
         "/privacy",
         "/privacy/classroom",
+        "/privacy/scribe",
         "/privacy/homepoint",
         "/privacy/daligo",
         "/support/daligo",
@@ -159,6 +161,18 @@ def test_classroom_privacy_page_discloses_private_text_and_transient_audio() -> 
     assert "does not require location" in response.text
     assert "Dalifin LLC" in response.text
     assert 'href="/account-deletion/classroom"' in response.text
+
+
+def test_scribe_privacy_page_discloses_transient_audio_and_local_content() -> None:
+    response = client.get("/privacy/scribe")
+    assert response.status_code == 200
+    assert "Dali Scribe Privacy Policy" in response.text
+    assert "does not save source audio" in response.text
+    assert "stored primarily in the app&#39;s private storage" in response.text
+    assert "authorized AI provider" in response.text
+    assert "transaction-verification data" in response.text
+    assert "recording, consent, privacy, confidentiality" in response.text
+    assert "Dalifin LLC" in response.text
 
 
 def test_homepoint_privacy_page_discloses_background_location() -> None:

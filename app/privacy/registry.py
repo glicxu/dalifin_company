@@ -8,11 +8,13 @@ from app.privacy.dali_wilderness import POLICY as DALI_WILDERNESS_POLICY
 from app.privacy.daligo import POLICY as DALIGO_POLICY
 from app.privacy.dalitrail import POLICY as DALITRAIL_POLICY
 from app.privacy.homepoint import POLICY as HOMEPOINT_POLICY
+from app.privacy.scribe import POLICY as SCRIBE_POLICY
 
 
 APP_PRIVACY_POLICIES: dict[str, dict[str, Any]] = {
     "classroom": CLASSROOM_POLICY,
     "dali-interpreter": DALI_INTERPRETER_POLICY,
+    "scribe": SCRIBE_POLICY,
     "homepoint": HOMEPOINT_POLICY,
     "dalitrail": DALITRAIL_POLICY,
     "dali-wilderness": DALI_WILDERNESS_POLICY,

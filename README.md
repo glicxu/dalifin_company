@@ -79,6 +79,7 @@ Environment variables:
 - `/privacy`
 - `/privacy/classroom`
 - `/privacy/dali-interpreter`
+- `/privacy/scribe`
 - `/privacy/homepoint`
 - `/privacy/dalitrail`
 - `/privacy/dali-wilderness`

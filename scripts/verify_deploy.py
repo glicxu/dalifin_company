@@ -28,6 +28,7 @@ def main() -> int:
         "/about",
         "/contact",
         "/privacy/classroom",
+        "/privacy/scribe",
         "/account-deletion/classroom",
         "/downloads",
         "/downloads/mobile_bible",
