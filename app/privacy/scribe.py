@@ -1,6 +1,6 @@
 POLICY = {
     "app_name": "Dali Scribe",
-    "effective_date": "September 2, 2026",
+    "effective_date": "September 11, 2026",
     "summary": (
         "Dali Scribe provides live transcription, editable session history, "
         "AI-generated summaries, notes, and user-directed exports."
@@ -19,9 +19,10 @@ POLICY = {
         {
             "title": "Live audio and AI processing",
             "paragraphs": [
-                "Dali Scribe accesses the microphone only when the user starts an active recording and grants microphone permission. Source audio is transmitted to Dalifin services and an authorized AI provider to produce the requested transcript.",
+                "Dali Scribe accesses the microphone only when the user starts an active recording, grants microphone permission, and consents to third-party AI processing. Source audio is transmitted through Dalifin LLC services to Google LLC's Gemini AI service to produce the requested transcript. OpenAI, L.L.C. may receive the same content only when its AI service is used as a controlled fallback.",
                 "Dalifin does not save source audio in its account databases, files, object storage, or server-side session history. Audio may be buffered temporarily on the user's device for reliable delivery and is held only transiently by the services while processing, retry, and recovery are in progress.",
-                "When the user requests a summary, Dali Scribe sends the relevant transcript and notes, together with the selected summary instructions, to Dalifin services and an authorized AI provider. The resulting summary is returned to the app and stored with the session on the user's device.",
+                "When the user requests a summary, Dali Scribe sends the relevant transcript and notes, together with the selected summary instructions, through Dalifin LLC services to Google LLC's Gemini AI service or, when used as a controlled fallback, OpenAI, L.L.C. The resulting summary is returned to the app and stored with the session on the user's device.",
+                "Before any session content is sent, the app identifies these recipients, describes the content and purpose, and asks for the user's permission. The user may decline and continue using features that do not require cloud AI processing.",
             ],
         },
         {
@@ -39,7 +40,8 @@ POLICY = {
             "paragraphs": [
                 "Session titles, transcripts, summaries, and notes are stored primarily in the app's private storage on the user's device. Scribe does not provide public discovery, advertising profiles, or sale of this content.",
                 "When the user exports or shares a session, the selected content is provided to the destination the user chooses. Exported copies are then handled by the recipient, app, or storage service under its own terms and privacy practices.",
-                "Dalifin may use hosting, security, communications, and AI service providers only as needed to operate Scribe. Google Play, Apple, or another authorized store processes purchases. Dalifin may receive transaction-verification data and entitlement status but does not receive payment-card details. Dalifin does not sell personal information.",
+                "Google LLC and OpenAI, L.L.C. may process session content only to deliver the AI feature requested by the user. Dalifin requires its service providers to provide privacy and security protections equal to or stronger than those described in this policy. Dalifin does not sell personal information or share it for third-party advertising.",
+                "Google Play, Apple, or another authorized store processes purchases. Dalifin may receive transaction-verification data and entitlement status but does not receive payment-card details.",
             ],
         },
         {

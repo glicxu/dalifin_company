@@ -169,7 +169,10 @@ def test_scribe_privacy_page_discloses_transient_audio_and_local_content() -> No
     assert "Dali Scribe Privacy Policy" in response.text
     assert "does not save source audio" in response.text
     assert "stored primarily in the app&#39;s private storage" in response.text
-    assert "authorized AI provider" in response.text
+    assert "Google LLC&#39;s Gemini AI service" in response.text
+    assert "OpenAI, L.L.C." in response.text
+    assert "Before any session content is sent" in response.text
+    assert "equal to or stronger" in response.text
     assert "transaction-verification data" in response.text
     assert "recording, consent, privacy, confidentiality" in response.text
     assert "Dalifin LLC" in response.text
