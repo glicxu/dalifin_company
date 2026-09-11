@@ -19,10 +19,10 @@ POLICY = {
         {
             "title": "Live audio and AI processing",
             "paragraphs": [
-                "Dali Scribe accesses the microphone only when the user starts an active recording, grants microphone permission, and consents to third-party AI processing. Source audio is transmitted through Dalifin LLC services to Google LLC's Gemini AI service to produce the requested transcript. OpenAI, L.L.C. may receive the same content only when its AI service is used as a controlled fallback.",
+                "Dali Scribe accesses the microphone only when the user starts an active recording, grants microphone permission, and consents to AI processing. Source audio may be transmitted through Dalifin LLC services to Google LLC's Gemini AI service or OpenAI, L.L.C.'s AI service to produce the requested transcript.",
                 "Dalifin does not save source audio in its account databases, files, object storage, or server-side session history. Audio may be buffered temporarily on the user's device for reliable delivery and is held only transiently by the services while processing, retry, and recovery are in progress.",
-                "When the user requests a summary, Dali Scribe sends the relevant transcript and notes, together with the selected summary instructions, through Dalifin LLC services to Google LLC's Gemini AI service or, when used as a controlled fallback, OpenAI, L.L.C. The resulting summary is returned to the app and stored with the session on the user's device.",
-                "Before any session content is sent, the app identifies these recipients, describes the content and purpose, and asks for the user's permission. The user may decline and continue using features that do not require cloud AI processing.",
+                "When the user requests a summary, Dali Scribe may send the relevant transcript and notes, together with the selected summary instructions, through Dalifin LLC services to Google LLC's Gemini AI service or OpenAI, L.L.C.'s AI service. The resulting summary is returned to the app and stored with the session on the user's device.",
+                "Before any session content is sent, the app identifies these recipients, describes the content and purpose, and asks for the user's permission. The user may decline, or withdraw AI-processing consent at any time in Settings, and continue using features that do not require cloud AI processing.",
             ],
         },
         {
