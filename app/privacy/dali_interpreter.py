@@ -1,6 +1,7 @@
 POLICY = {
     "app_name": "Dali Interpreter",
-    "effective_date": "July 21, 2026",
+    "account_deletion_path": "/account-deletion/dali-interpreter-personal",
+    "effective_date": "September 28, 2026",
     "summary": (
         "Dali Interpreter Listener, Host, and Personal provide live interpretation, "
         "transcription, translation, and audio playback services."
@@ -14,6 +15,8 @@ POLICY = {
                 "Live audio, transcripts, translations, and generated speech needed to provide interpretation and playback.",
                 "App, device, network, diagnostic, and crash information used to operate, secure, troubleshoot, and support the service.",
                 "Download, entitlement, subscription, and store-transaction evidence needed to manage product access.",
+                "For Personal, device association and Play Integrity results used to secure the one-time free allowance, plus optional recovery-code and email-attachment state.",
+                "Personal session transcripts, interpretations, and summaries saved on the device or in account history when that option is used.",
             ],
         },
         {
@@ -37,6 +40,7 @@ POLICY = {
             "paragraphs": [
                 "Information is retained for as long as needed to provide sessions and account access, maintain security and operational records, resolve support issues, and meet legal obligations. Some diagnostic, security, and transaction records may be retained for a limited period after use of the service ends.",
                 "Users can stop participating in a session, manage app permissions in device settings, and contact Dalifin to request access, correction, or deletion. Some records may need to be retained where required for security, payment, fraud-prevention, or legal purposes.",
+                "Personal users can delete their device account in the app. Deletion does not restore the one-time free allowance. A public deletion request path is available if the app or recovery code is no longer accessible.",
             ],
         },
     ],
