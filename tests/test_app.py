@@ -67,6 +67,9 @@ def test_support_page_renders_app_support_content() -> None:
     assert "gli@dalifin.com" in response.text
     assert "Dali Interpreter Listener, Host, and Personal" in response.text
     assert "Dali Interpreter Personal help" in response.text
+    assert "Create recovery code" in response.text
+    assert "Recover with a recovery code" in response.text
+    assert "replacement recovery code" in response.text
     assert 'href="/account-deletion/dali-interpreter-personal"' in response.text
     assert "/privacy" in response.text
     assert "/payments" in response.text

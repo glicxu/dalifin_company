@@ -117,7 +117,7 @@ PRODUCT_CATALOG: dict[str, dict[str, Any]] = {
             },
             {
                 "question": "How can I restore access after reinstalling?",
-                "answer": "Save your recovery code in the app before reinstalling. See the public support page if you need help.",
+                "answer": "Before reinstalling, open Settings > Account and choose Create recovery code. Save the one-time code separately. On a signed-out Account screen, use Recover with a recovery code and save the replacement code. If the option is unavailable, contact support.",
             },
         ],
     },
