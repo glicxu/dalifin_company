@@ -96,6 +96,31 @@ PRODUCT_CATALOG: dict[str, dict[str, Any]] = {
             },
         ],
     },
+    "interprete_personal": {
+        "headline": "Personal transcription and interpretation on Android.",
+        "summary": "Start without sign-in using a one-time 30-minute free allowance for an eligible device. Personal plans are not available in this release.",
+        "accent": "harbor",
+        "hero_label": "Dali Interpreter Personal",
+        "features": [
+            "Transcribe speech or follow one-way and two-way interpretation.",
+            "Review available transcripts, interpretations, and summaries after a session.",
+            "Add email sign-in to protect access to your device account.",
+        ],
+        "faq": [
+            {
+                "question": "Do I need to sign in to start?",
+                "answer": "No. An eligible device receives a one-time 30-minute allowance. The allowance does not renew.",
+            },
+            {
+                "question": "Can I buy more Personal time?",
+                "answer": "Personal plans are not available in this release.",
+            },
+            {
+                "question": "How can I restore access after reinstalling?",
+                "answer": "Save your recovery code in the app before reinstalling. See the public support page if you need help.",
+            },
+        ],
+    },
 }
 
 

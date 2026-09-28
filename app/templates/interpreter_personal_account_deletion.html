@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Delete your Dali Interpreter Personal account and data | {{ site_name }}{% endblock %}
+{% block content %}
+<section class="content-hero support-hero">
+  <div class="container">
+    <p class="eyebrow">Dali Interpreter Personal deletion</p>
+    <h1>Request deletion of your Personal account and data.</h1>
+    <p class="lede">Dali Interpreter Personal is provided by Dalifin LLC. You can delete your device account in the app or request help here if you no longer have access.</p>
+  </div>
+</section>
+<section class="content-section support-section">
+  <div class="container support-layout">
+    <article class="content-card support-copy">
+      <h2>Delete in the app</h2>
+      <p>Open <strong>Settings &gt; Account</strong> and choose <strong>Delete device account</strong>. Follow the confirmation shown in the app. If you added email sign-in, use the account deletion control in Account.</p>
+      <p>Export anything you want to keep first. Deleting the account does not restore the one-time 30-minute free allowance.</p>
+    </article>
+    <article class="content-card support-copy">
+      <h2>Request deletion without app access</h2>
+      <p>Email <a href="mailto:{{ contact_email }}?subject=Dali%20Interpreter%20Personal%20account%20and%20data%20deletion%20request">{{ contact_email }}</a> with the subject <strong>Dali Interpreter Personal account and data deletion request</strong>. Tell us whether you want to delete only Personal data or the shared Dali account if you attached email sign-in.</p>
+      <p>We will explain a secure way to verify your account or device identity. Do not email your recovery code, password, payment-card details, or identity documents.</p>
+    </article>
+    <article class="content-card support-copy">
+      <h2>What the request covers</h2>
+      <p>A verified Personal deletion request covers the Personal account, device association, and associated server-side sessions, transcripts, interpretations, and summaries, subject to limited retention needed for security, fraud prevention, legal duties, and operational records. Content saved only on your device must be removed from the app or device.</p>
+      <p>Deleting a shared Dali account can affect access to other Dali products. We will explain that consequence before processing a broader request. See the <a href="/privacy/dali-interpreter">Dali Interpreter Privacy Policy</a>.</p>
+    </article>
+  </div>
+</section>
+{% endblock %}

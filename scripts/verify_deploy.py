@@ -30,6 +30,7 @@ def main() -> int:
         "/privacy/classroom",
         "/privacy/scribe",
         "/account-deletion/classroom",
+        "/account-deletion/dali-interpreter-personal",
         "/downloads",
         "/downloads/mobile_bible",
     ]

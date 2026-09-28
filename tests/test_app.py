@@ -66,6 +66,8 @@ def test_support_page_renders_app_support_content() -> None:
     assert "Get help with Dalifin apps and services." in response.text
     assert "gli@dalifin.com" in response.text
     assert "Dali Interpreter Listener, Host, and Personal" in response.text
+    assert "Dali Interpreter Personal help" in response.text
+    assert 'href="/account-deletion/dali-interpreter-personal"' in response.text
     assert "/privacy" in response.text
     assert "/payments" in response.text
     assert "id=\"support-payment-form\"" not in response.text
@@ -107,6 +109,7 @@ def test_privacy_pages_accept_head_requests_for_store_validators() -> None:
         "/privacy/daligo",
         "/support/daligo",
         "/account-deletion/classroom",
+        "/account-deletion/dali-interpreter-personal",
         "/account-deletion/daligo",
     ):
         response = client.head(path)
@@ -146,6 +149,18 @@ def test_dali_interpreter_privacy_page_contains_interpreter_disclosures() -> Non
     assert "transcripts" in response.text
     assert "third-party hosting" in response.text
     assert "Dalifin LLC" in response.text
+    assert "Play Integrity" in response.text
+    assert 'href="/account-deletion/dali-interpreter-personal"' in response.text
+
+
+def test_interpreter_personal_deletion_page_provides_external_request_path() -> None:
+    response = client.get("/account-deletion/dali-interpreter-personal")
+    assert response.status_code == 200
+    assert "Request deletion of your Personal account and data" in response.text
+    assert "Dali Interpreter Personal account and data deletion request" in response.text
+    assert "mailto:gli@dalifin.com" in response.text
+    assert "Do not email your recovery code" in response.text
+    assert "does not restore the one-time 30-minute free allowance" in response.text
 
 
 def test_classroom_privacy_page_discloses_private_text_and_transient_audio() -> None:
