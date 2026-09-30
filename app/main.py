@@ -206,6 +206,20 @@ def interpreter_personal_account_deletion_page(request: Request):
     )
 
 
+@app.api_route(
+    "/account-deletion/dali-audio",
+    methods=["GET", "HEAD"],
+    response_class=HTMLResponse,
+)
+def dali_audio_account_deletion_page(request: Request):
+    settings = get_settings()
+    return _render(
+        request,
+        "dali_audio_account_deletion.html",
+        contact_email=settings.contact_email,
+    )
+
+
 @app.api_route("/payments", methods=["GET", "HEAD"], response_class=HTMLResponse)
 def payments_page(request: Request):
     return _render(request, "payments.html")

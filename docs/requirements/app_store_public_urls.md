@@ -10,6 +10,8 @@ This requirement covers the public URLs currently referenced by the Dali Interpr
 - `https://dalifin.com/support`
 - `https://dalifin.com/privacy`
 - `https://dalifin.com/privacy/classroom`
+- `https://dalifin.com/privacy/dali-audio`
+- `https://dalifin.com/account-deletion/dali-audio`
 - `https://dalifin.com/account-deletion/classroom`
 - `https://dalifin.com/privacy/dali-interpreter`
 - `https://dalifin.com/privacy/homepoint`
@@ -88,6 +90,7 @@ Acceptance criteria:
 Apps with different data practices use separate public policies:
 
 - Dali Classroom: `/privacy/classroom`
+- Dali Audio: `/privacy/dali-audio`
 - Dali Interpreter: `/privacy/dali-interpreter`
 - HomePoint: `/privacy/homepoint`
 - DaliTrail: `/privacy/dalitrail`

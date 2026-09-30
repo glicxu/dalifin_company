@@ -95,6 +95,7 @@ def test_privacy_page_renders_general_company_policy_and_app_directory() -> None
     assert "This general policy" in response.text
     assert "Stripe" in response.text
     assert 'href="/privacy/classroom"' in response.text
+    assert 'href="/privacy/dali-audio"' in response.text
     assert 'href="/privacy/dali-interpreter"' in response.text
     assert 'href="/privacy/scribe"' in response.text
     assert 'href="/privacy/homepoint"' in response.text
@@ -107,12 +108,14 @@ def test_privacy_pages_accept_head_requests_for_store_validators() -> None:
     for path in (
         "/privacy",
         "/privacy/classroom",
+        "/privacy/dali-audio",
         "/privacy/scribe",
         "/privacy/homepoint",
         "/privacy/daligo",
         "/support/daligo",
         "/account-deletion/classroom",
         "/account-deletion/dali-interpreter-personal",
+        "/account-deletion/dali-audio",
         "/account-deletion/daligo",
     ):
         response = client.head(path)
@@ -154,6 +157,29 @@ def test_dali_interpreter_privacy_page_contains_interpreter_disclosures() -> Non
     assert "Dalifin LLC" in response.text
     assert "Play Integrity" in response.text
     assert 'href="/account-deletion/dali-interpreter-personal"' in response.text
+
+
+def test_dali_audio_privacy_page_contains_audio_disclosures() -> None:
+    response = client.get("/privacy/dali-audio")
+    assert response.status_code == 200
+    assert "Dali Audio Privacy Policy" in response.text
+    assert "Google LLC&#39;s Gemini AI service" in response.text
+    assert "OpenAI, L.L.C.&#39;s AI service" in response.text
+    assert "seven days" in response.text
+    assert "contains no advertising SDK" in response.text
+    assert "does not require location, contacts, microphone" in response.text
+    assert 'href="/account-deletion/dali-audio"' in response.text
+
+
+def test_dali_audio_account_deletion_page_provides_external_request_path() -> None:
+    response = client.get("/account-deletion/dali-audio")
+    assert response.status_code == 200
+    assert "Request deletion of your Dali Audio account and data" in response.text
+    assert "Dali Audio account and data deletion request" in response.text
+    assert "mailto:gli@dalifin.com" in response.text
+    assert "within 30 days" in response.text
+    assert "does not cancel a store subscription" in response.text
+    assert 'href="/privacy/dali-audio"' in response.text
 
 
 def test_interpreter_personal_deletion_page_provides_external_request_path() -> None:

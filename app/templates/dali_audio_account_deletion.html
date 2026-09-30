@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Dali Audio Account Deletion | {{ site_name }}{% endblock %}
+{% block content %}
+<section class="content-hero">
+  <div class="container">
+    <p class="eyebrow">Dali Audio</p>
+    <h1>Request deletion of your Dali Audio account and data.</h1>
+    <p class="lede">
+      Use this page if you cannot access the deletion controls in Dali Audio.
+      Dalifin LLC will verify ownership without asking for your password or recovery code.
+    </p>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container policy-layout">
+    <article class="content-card policy-card">
+      <h2>Send a deletion request</h2>
+      <p>
+        Email
+        <a href="mailto:{{ contact_email }}?subject=Dali%20Audio%20account%20and%20data%20deletion%20request">{{ contact_email }}</a>
+        with the subject <strong>Dali Audio account and data deletion request</strong>.
+        Include the email address associated with a registered account, if one exists,
+        and a brief description of whether you used registered or accountless access.
+        Do not email your password, recovery code, purchase token, or private document content.
+      </p>
+    </article>
+
+    <article class="content-card policy-card">
+      <h2>What the request covers</h2>
+      <ul class="policy-list">
+        <li>Your Dali Audio account or accountless identity held by Dalifin.</li>
+        <li>Server-side Dali Audio projects, source scripts, generated audio, job state, preferences, and product access associated with that identity.</li>
+        <li>Deletion or anonymization of account-linked operational records where they are not required for security, payment, fraud-prevention, deletion proof, or legal obligations.</li>
+      </ul>
+      <p>
+        Files stored only on your phone cannot be removed remotely. Delete them in the app,
+        clear Dali Audio storage in device settings, or uninstall the app.
+      </p>
+    </article>
+
+    <article class="content-card policy-card">
+      <h2>Verification and timing</h2>
+      <p>
+        Dalifin may ask for limited information needed to verify that you control the account
+        or installation. Verified requests are ordinarily completed within 30 days. We will
+        explain any limited records that must be retained and confirm when the request is complete.
+      </p>
+    </article>
+
+    <article class="content-card policy-card">
+      <h2>Purchases and subscriptions</h2>
+      <p>
+        Deleting Dali Audio data does not cancel a store subscription or reverse a purchase.
+        Manage or cancel subscriptions separately in Google Play or the store that processed
+        the purchase.
+      </p>
+      <p><a href="/privacy/dali-audio">Read the Dali Audio Privacy Policy</a>.</p>
+    </article>
+  </div>
+</section>
+{% endblock %}
