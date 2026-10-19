@@ -167,7 +167,11 @@ def test_dali_audio_privacy_page_contains_audio_disclosures() -> None:
     assert "OpenAI, L.L.C.&#39;s AI service" in response.text
     assert "seven days" in response.text
     assert "contains no advertising SDK" in response.text
-    assert "does not require location, contacts, microphone" in response.text
+    assert "requests microphone permission" in response.text
+    assert "reusable derived voice" in response.text
+    assert "prompted-phrase transcripts and match results" in response.text
+    assert "not for general model training" in response.text
+    assert "does not require location, contacts, microphone" not in response.text
     assert 'href="/account-deletion/dali-audio"' in response.text
 
 
@@ -178,6 +182,8 @@ def test_dali_audio_account_deletion_page_provides_external_request_path() -> No
     assert "Dali Audio account and data deletion request" in response.text
     assert "mailto:gli@dalifin.com" in response.text
     assert "within 30 days" in response.text
+    assert "reference recordings, reusable derived voice data" in response.text
+    assert "Copies already exported" in response.text
     assert "does not cancel a store subscription" in response.text
     assert 'href="/privacy/dali-audio"' in response.text
 
