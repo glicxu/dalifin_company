@@ -61,7 +61,8 @@ POLICY = {
             "paragraphs": [
                 "Local documents, drafts, downloaded audio, and preferences remain on the device until the user deletes them, clears the app's data, or uninstalls the app. Cloud source text and generated audio for a current job are retained for the displayed job period, presently up to seven days, then expire from active application storage.",
                 "Users can delete individual documents, drafts, jobs, saved audio, and personal voices where those controls are offered; sign out; remove local app data through device settings; or request deletion of the Dali Audio account and associated server data, including personal voice references and derived voice data, through the public deletion page linked above.",
-                "Some content-free security, transaction, entitlement, fraud-prevention, backup, deletion-proof, or legal records may be retained for a limited period. Store subscriptions must be canceled separately through Google Play or the store that processed the purchase.",
+                "Protected Personal Voices recovery backups may contain encrypted copies of voice references, derived voice data, and cloud recordings. They use a 14-day retention cutoff with daily cleanup, normally removing copies within 15 days. Deletion and revocation records must be reapplied before restored data can be used; an older backup does not authorize reactivating a deleted voice.",
+                "Some content-free security, transaction, entitlement, fraud-prevention, deletion-proof, or legal records may be retained for a limited period. Store subscriptions must be canceled separately through Google Play or the store that processed the purchase.",
             ],
         },
         {
