@@ -96,6 +96,7 @@ def test_privacy_page_renders_general_company_policy_and_app_directory() -> None
     assert "Stripe" in response.text
     assert 'href="/privacy/classroom"' in response.text
     assert 'href="/privacy/dali-audio"' in response.text
+    assert 'href="/privacy/dali-cam"' in response.text
     assert 'href="/privacy/dali-interpreter"' in response.text
     assert 'href="/privacy/scribe"' in response.text
     assert 'href="/privacy/homepoint"' in response.text
@@ -109,6 +110,7 @@ def test_privacy_pages_accept_head_requests_for_store_validators() -> None:
         "/privacy",
         "/privacy/classroom",
         "/privacy/dali-audio",
+        "/privacy/dali-cam",
         "/privacy/scribe",
         "/privacy/homepoint",
         "/privacy/daligo",
@@ -186,6 +188,18 @@ def test_dali_audio_account_deletion_page_provides_external_request_path() -> No
     assert "Copies already exported" in response.text
     assert "does not cancel a store subscription" in response.text
     assert 'href="/privacy/dali-audio"' in response.text
+
+
+def test_dali_cam_privacy_page_discloses_on_device_processing() -> None:
+    response = client.get("/privacy/dali-cam")
+    assert response.status_code == 200
+    assert "Dali Cam Privacy Policy" in response.text
+    assert "photography coaching, filters, and beautification" in response.text
+    assert "Camera frames are processed on the device" in response.text
+    assert "does not record, retain, or transmit microphone audio" in response.text
+    assert "add the device&#39;s current capture location" in response.text
+    assert "does not contain advertising or third-party analytics SDKs" in response.text
+    assert "Dalifin LLC" in response.text
 
 
 def test_interpreter_personal_deletion_page_provides_external_request_path() -> None:
