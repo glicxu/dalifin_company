@@ -2,10 +2,17 @@ POLICY = {
     "app_name": "Dali Cam",
     "effective_date": "October 21, 2026",
     "summary": (
-        "Dali Cam is a camera, photography-coaching, filtering, and beautification app "
-        "that processes photos and camera content on the user's device."
+        "Dali Cam does not collect data. Camera capture, photography coaching, filtering, "
+        "and beautification are completed entirely on the user's iPhone."
     ),
     "sections": [
+        {
+            "title": "No data collected — everything stays on the phone",
+            "paragraphs": [
+                "Dalifin does not collect any data from Dali Cam. The app does not send photos, camera frames, microphone audio, location, usage activity, device identifiers, or analytics to Dalifin or to third-party services.",
+                "All app features are completed on the iPhone. Content leaves the app only when the user explicitly chooses to save, export, or share a photo to a destination the user selects.",
+            ],
+        },
         {
             "title": "Camera and photo library",
             "paragraphs": [
