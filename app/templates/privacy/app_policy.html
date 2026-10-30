@@ -31,6 +31,13 @@
     </article>
     {% endif %}
 
+    {% if policy.get("terms_path") %}
+    <article class="content-card policy-card">
+      <h2>Terms of use</h2>
+      <p><a href="{{ policy.terms_path }}">Read the {{ policy.app_name }} terms of use</a>.</p>
+    </article>
+    {% endif %}
+
     {% for section in policy.sections %}
     <article class="content-card policy-card">
       <h2>{{ section.title }}</h2>

@@ -225,6 +225,16 @@ def payments_page(request: Request):
     return _render(request, "payments.html")
 
 
+@app.api_route("/account-deletion/dalibible", methods=["GET", "HEAD"], response_class=HTMLResponse)
+def dalibible_account_deletion_page(request: Request):
+    return _render(request, "dalibible_account_deletion.html", contact_email=get_settings().contact_email)
+
+
+@app.api_route("/terms/dalibible", methods=["GET", "HEAD"], response_class=HTMLResponse)
+def dalibible_terms_page(request: Request):
+    return _render(request, "dalibible_terms.html", contact_email=get_settings().contact_email)
+
+
 @app.api_route("/privacy", methods=["GET", "HEAD"], response_class=HTMLResponse)
 def privacy_page(request: Request):
     settings = get_settings()

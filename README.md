@@ -77,6 +77,9 @@ Environment variables:
 - `/about`
 - `/contact`
 - `/privacy`
+- `/privacy/dalibible`
+- `/terms/dalibible`
+- `/account-deletion/dalibible`
 - `/privacy/classroom`
 - `/privacy/dali-interpreter`
 - `/privacy/dali-cam`
