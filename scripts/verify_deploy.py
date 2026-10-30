@@ -14,6 +14,7 @@ def _check(client: httpx.Client, url: str) -> tuple[int, str]:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Smoke-check dalifin_company deployment.")
     parser.add_argument("--base-url", required=True, help="Website base URL, e.g. http://127.0.0.1:5104")
+    parser.add_argument("--expected-build-id", help="Require the running website to match this source commit")
     parser.add_argument(
         "--api-url",
         required=True,
@@ -29,6 +30,9 @@ def main() -> int:
         "/contact",
         "/privacy/classroom",
         "/privacy/scribe",
+        "/privacy/dalibible",
+        "/terms/dalibible",
+        "/account-deletion/dalibible",
         "/account-deletion/classroom",
         "/account-deletion/dali-interpreter-personal",
         "/downloads",
@@ -41,6 +45,10 @@ def main() -> int:
 
     failures: list[str] = []
     with httpx.Client(timeout=10, follow_redirects=True) as client:
+        if args.expected_build_id:
+            version = client.get(f"{args.base_url.rstrip('/')}/version")
+            if version.status_code != 200 or version.json().get("buildId") != args.expected_build_id:
+                failures.append("website buildId does not match the expected source commit")
         for path in website_checks:
             status, body = _check(client, f"{args.base_url.rstrip('/')}{path}")
             if status != 200:
