@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Delete your DaliBible account and data | {{ site_name }}{% endblock %}
+{% block content %}
+<section class="content-hero">
+  <div class="container">
+    <p class="eyebrow">DaliBible account and data deletion</p>
+    <h1>Request deletion of your DaliBible account and data.</h1>
+    <p class="lede">DaliBible (Dali Bible) is provided by Dalifin LLC. You can submit a request here without installing or signing in to the app.</p>
+  </div>
+</section>
+<section class="content-section">
+  <div class="container policy-layout">
+    <article class="content-card policy-card">
+      <h2>Request deletion by email</h2>
+      <p>Email <a href="mailto:{{ contact_email }}?subject=DaliBible%20account%20and%20data%20deletion%20request">{{ contact_email }}</a> with the subject <strong>DaliBible account and data deletion request</strong>. Where possible, send it from your registered account email address.</p>
+      <p>Tell us whether you want <strong>DaliBible data removed while keeping your shared Dali account</strong>, or <strong>your shared Dali account and associated data deleted across Dali services</strong>. If you cannot access your registered email address, tell us that so we can discuss a safe verification method.</p>
+      <p>We may need to verify account ownership before acting. Do not email your password, verification codes, recovery codes, payment-card details, or identity documents.</p>
+      <p>Dalifin support reviews the request, confirms its scope and any verification steps, and follows up on completion or an unresolved requirement. Shared-account cleanup involves multiple services and may require manual follow-up. A request acknowledgement does not mean all data has already been removed.</p>
+    </article>
+    <article class="content-card policy-card">
+      <h2>Request deletion in the app</h2>
+      <ol class="policy-list">
+        <li>Sign in to DaliBible, open <strong>More &gt; Configure</strong>, and scroll to <strong>Session</strong>.</li>
+        <li>Select <strong>Delete account</strong>. Read the warning: this requests deletion of your shared Dali account and affects access to other Dali services.</li>
+        <li>Confirm using your <strong>Dali password</strong>. If you signed in with Google or Apple and have no Dali password, use <strong>Set or reset Dali password</strong> and complete email verification first. Do not enter your Google or Apple password.</li>
+        <li>Submit the request. An accepted shared-account request signs you out. Contact the email above if you cannot complete the flow or need confirmation that cleanup has finished.</li>
+      </ol>
+      <p>For Bible-only data deletion, or if you cannot use the app, use the email option above. Removing the app or signing out does not submit a server-side deletion request.</p>
+    </article>
+    <article class="content-card policy-card">
+      <h2>Data covered and possible retention</h2>
+      <p>A verified Bible-data deletion request covers associated synced reading information, annotations, notes, outlines, Leader Notes, saved AI answers and links, and account-linked chat/community data. Public content, reports and conversations may need removal or de-identification while preserving other participants' records.</p>
+      <p>A shared-account request also disables the shared Dali identity and initiates cleanup with participating Dali services. It does not delete your Google or Apple account.</p>
+      <p>Some security, fraud-prevention, transaction, usage-accounting, moderation or legal records may be retained where necessary. Backup copies may remain until their backup is replaced or removed. We will explain relevant retention or unresolved cleanup when reviewing your request. See the <a href="/privacy/dalibible">DaliBible Privacy Policy</a>.</p>
+      <p>To remove local study data, use your device's app-storage controls or uninstall the app. Device backups and copies you exported or shared are managed separately. Store-managed subscriptions must be cancelled through the relevant store; an account-deletion request does not cancel them automatically.</p>
+    </article>
+    <article class="content-card policy-card">
+      <h2>Related information</h2>
+      <p><a href="/privacy/dalibible">Privacy Policy</a> · <a href="/terms/dalibible">Terms of Use</a> · <a href="/support/dalibible">Support</a></p>
+    </article>
+  </div>
+</section>
+{% endblock %}

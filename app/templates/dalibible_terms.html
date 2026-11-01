@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}DaliBible Terms of Use | {{ site_name }}{% endblock %}
+{% block content %}
+<section class="content-hero">
+  <div class="container">
+    <p class="eyebrow">DaliBible terms</p>
+    <h1>DaliBible Terms of Use.</h1>
+    <p class="lede">These terms describe use of DaliBible (Dali Bible), provided by Dalifin LLC.</p>
+    <p class="quiet-note">Effective date: October 31, 2026</p>
+  </div>
+</section>
+<section class="content-section">
+  <div class="container policy-layout">
+    <article class="content-card policy-card">
+      <h2>Using DaliBible</h2>
+      <p>DaliBible offers Bible reading, local study tools and optional connected services. Use it lawfully and respect other people, their privacy, and applicable content rights. DaliBible is intended for adults aged 18 and older.</p>
+      <p>Keep your sign-in credentials secure and use an account you are authorized to access. Dali accounts are shared across participating services. You may read downloaded content without an account; AI assistance and other connected features require a network connection and the applicable account access.</p>
+      <p>Information handling is described in the <a href="/privacy/dalibible">DaliBible Privacy Policy</a>.</p>
+    </article>
+    <article class="content-card policy-card">
+      <h2>Your content and Bible translations</h2>
+      <p>You retain any rights you hold in your original notes and other content. By choosing to sync, process with AI, publish, report or share content, you permit Dalifin and its service providers to process that content as needed to provide that chosen function and operate its safety controls.</p>
+      <p>Only submit content you have the right to use. Bible translations, recordings and other supplied materials remain subject to their respective licenses, attribution and copyright notices. App access does not grant unrestricted redistribution rights.</p>
+    </article>
+    <article class="content-card policy-card">
+      <h2>AI assistance and allowances</h2>
+      <p>AI responses can contain mistakes, invented references, incomplete explanations or interpretations you disagree with. Check the underlying Scripture and relevant sources before using or sharing output. AI output is a study aid, not an authoritative edition of Scripture or a binding religious judgment.</p>
+      <p>The initial Free allowance is <strong>10 AI requests per account per UTC calendar month</strong>, shared across devices and participating Bible study tools. Features remain subject to service availability and safety controls. Signing out, reinstalling or using another device does not renew the allowance. Changes to an offering or allowance will be described in the app or its published terms.</p>
+      <p>Creating an account does not by itself start a paid subscription. If a paid offering is available, review its price, renewal and cancellation terms before purchase. Store-managed purchases and refunds are also subject to the applicable store's terms.</p>
+    </article>
+    <article class="content-card policy-card">
+      <h2>Community conduct and reporting</h2>
+      <p>Do not publish or request illegal material, child exploitation or abuse, threats, harassment, hateful abuse, non-consensual private information, fraud, spam or content that infringes others' rights. Discuss differing religious views respectfully. Do not attempt to bypass account, quota or security controls.</p>
+      <p>Use the app's reporting controls to flag harmful AI or user content. You can also contact <a href="mailto:{{ contact_email }}">{{ contact_email }}</a> for support or moderation concerns. Dalifin may review reported material, remove or restrict content, and suspend abusive access. Do not include unrelated private information in a report.</p>
+    </article>
+    <article class="content-card policy-card">
+      <h2>Availability and responsibility</h2>
+      <p>Features and content may change or be interrupted. Save or export work you need to keep and check sync status before removing local data. Dalifin takes reasonable care to operate the service, but cannot guarantee uninterrupted availability or the accuracy of every translation, reference, AI response or user contribution.</p>
+      <p>Nothing in these terms excludes rights or obligations that cannot be excluded under applicable law.</p>
+    </article>
+    <article class="content-card policy-card">
+      <h2>Deletion, changes and contact</h2>
+      <p>You may stop using the service and <a href="/account-deletion/dalibible">request account or data deletion</a>. Shared-account deletion affects other Dali services. Deletion does not automatically cancel a store-managed subscription or remove copies held by other people or your device's backup service.</p>
+      <p>Dalifin may update these terms as the service changes. The effective date identifies this version. For questions, support or privacy requests, contact <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>.</p>
+    </article>
+  </div>
+</section>
+{% endblock %}
