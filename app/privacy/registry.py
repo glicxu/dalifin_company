@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from app.privacy.chatty import POLICY as CHATTY_POLICY
 from app.privacy.classroom import POLICY as CLASSROOM_POLICY
 from app.privacy.dalijob import POLICY as DALIJOB_POLICY
 from app.privacy.dalibible import POLICY as DALIBIBLE_POLICY
@@ -16,6 +17,7 @@ from app.privacy.scribe import POLICY as SCRIBE_POLICY
 
 
 APP_PRIVACY_POLICIES: dict[str, dict[str, Any]] = {
+    "chatty": CHATTY_POLICY,
     "classroom": CLASSROOM_POLICY,
     "dali-audio": DALI_AUDIO_POLICY,
     "dali-cam": DALI_CAM_POLICY,

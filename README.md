@@ -77,6 +77,7 @@ Environment variables:
 - `/about`
 - `/contact`
 - `/privacy`
+- `/privacy/chatty`
 - `/privacy/dalijob` (also `/privacy/dali-job`)
 - `/privacy/dalibible`
 - `/terms/dalibible`
