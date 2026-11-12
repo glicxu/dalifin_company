@@ -194,14 +194,17 @@ def test_dali_cam_privacy_page_discloses_on_device_processing() -> None:
     response = client.get("/privacy/dali-cam")
     assert response.status_code == 200
     assert "Dali Cam Privacy Policy" in response.text
-    assert "Dali Cam does not collect data" in response.text
-    assert "everything stays on the phone" in response.text
-    assert "All app features are completed on the iPhone" in response.text
+    assert "Photo content stays on the phone" in response.text
+    assert "Android Google ML Kit diagnostics" in response.text
+    assert "device or installation identifiers" in response.text
+    assert "encrypts this data in transit using HTTPS" in response.text
+    assert "cannot promise deletion" in response.text
+    assert "does not collect data" not in response.text
     assert "photography coaching, filters, and beautification" in response.text
     assert "Camera frames are processed on the device" in response.text
     assert "does not record, retain, or transmit microphone audio" in response.text
     assert "add the device&#39;s current capture location" in response.text
-    assert "does not contain advertising or third-party analytics SDKs" in response.text
+    assert "does not contain advertising" in response.text
     assert "Dalifin LLC" in response.text
 
 
